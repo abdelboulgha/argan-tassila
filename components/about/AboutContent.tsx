@@ -130,47 +130,73 @@ export default function AboutContent() {
             {/* Image */}
             <div className="about-story-img relative h-[520px]">
 
-              {/* Main image — top-left (or top-right for AR) */}
+              {/* Gold decorative frame behind main */}
               <div className={clsx(
-                "about-img-main absolute top-0 w-[72%] h-[75%] overflow-hidden",
+                "about-img-frame absolute w-[72%] h-[75%] border-2 border-gold/50 -z-10",
+                isAr ? "top-5 right-5" : "top-5 left-5"
+              )} />
+
+              {/* Main image */}
+              <div className={clsx(
+                "about-img-main absolute top-0 w-[72%] h-[75%] overflow-hidden group",
                 isAr ? "right-0" : "left-0"
               )}>
                 <Image
                   src="/images/products/huile-argan.webp"
                   alt="Huile d'argan pure Argan Tassila"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 60vw, 35vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-green/30 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-green/50 via-green/10 to-transparent" />
+                {/* Corner bracket top */}
+                <div className={clsx(
+                  "absolute top-4 w-6 h-6 border-t-2 border-gold",
+                  isAr ? "right-4 border-r-2" : "left-4 border-l-2"
+                )} />
+                {/* Label bottom */}
+                <div className={clsx(
+                  "absolute bottom-5 flex flex-col gap-0.5",
+                  isAr ? "right-5 items-end" : "left-5"
+                )}>
+                  <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-gold/90">Souss-Massa · Maroc</span>
+                  <span className={clsx("font-display text-sm font-bold text-cream", isAr && "font-arabic")}>
+                    {isAr ? "100% طبيعي" : "100% Naturel"}
+                  </span>
+                </div>
               </div>
 
-              {/* Secondary image — bottom-right (or bottom-left for AR), overlapping */}
+              {/* Secondary image */}
               <div className={clsx(
-                "about-img-secondary absolute bottom-0 w-[58%] h-[55%] overflow-hidden border-4 border-white",
-                isAr ? "left-0" : "right-0"
+                "about-img-secondary absolute bottom-0 w-[58%] h-[55%] overflow-hidden group",
+                "shadow-[0_8px_40px_rgba(0,0,0,0.18)]",
+                isAr ? "left-0 border-[5px] border-white" : "right-0 border-[5px] border-white"
               )}>
                 <Image
                   src="/images/products/amlou-beldi.webp"
                   alt="Amlou beldi artisanal"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 40vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-green/20 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-green/40 via-transparent to-transparent" />
+                {/* Corner bracket */}
+                <div className={clsx(
+                  "absolute bottom-3 w-5 h-5 border-b-2 border-gold",
+                  isAr ? "left-3 border-l-2" : "right-3 border-r-2"
+                )} />
               </div>
 
-              {/* Gold decorative frame */}
+              {/* Gold pill — floating between the two images */}
               <div className={clsx(
-                "about-img-frame absolute w-[72%] h-[75%] border border-gold/40 -z-10",
-                isAr ? "top-3 right-3" : "top-3 left-3"
-              )} />
+                "about-img-frame absolute z-10 bg-green border border-gold/60 px-3 py-1.5",
+                isAr ? "top-[72%] right-[68%]" : "top-[72%] left-[68%]"
+              )}>
+                <p className="font-sans text-[8px] tracking-[0.2em] uppercase text-gold whitespace-nowrap">
+                  {isAr ? "منذ ١٠+ سنوات" : "Depuis + de 10 ans"}
+                </p>
+              </div>
 
-              {/* Gold accent line */}
-              <div className={clsx(
-                "absolute top-[74%] h-px w-12 bg-gold",
-                isAr ? "right-[58%] -translate-x-2" : "left-[72%] translate-x-2"
-              )} />
             </div>
           </div>
         </div>
