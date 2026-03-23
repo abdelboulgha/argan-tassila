@@ -89,7 +89,7 @@ export default function AboutContent() {
           { label: a.hero.breadcrumb[0], href: "/" },
           { label: a.hero.breadcrumb[1] },
         ]}
-        image="https://images.unsplash.com/photo-1548393264-96b9b1151e93?w=1920&q=80"
+        image="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=1920&q=80"
         dark={false}
       />
 
@@ -178,41 +178,6 @@ export default function AboutContent() {
                 </h3>
                 <p className={clsx("font-sans text-sm leading-relaxed text-muted", isAr && "font-arabic")}>
                   {value.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="py-24 md:py-32 bg-green">
-        <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div className={clsx("text-center mb-16")}>
-            <p className={clsx("font-sans text-xs tracking-widest uppercase text-gold mb-4", isAr && "font-arabic text-sm tracking-normal")}>
-              {a.team.label}
-            </p>
-            <h2 className={clsx("font-display text-4xl md:text-5xl font-bold text-cream", isAr && "font-arabic")}>
-              {a.team.title}
-            </h2>
-          </div>
-          <div className="team-grid grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {a.team.members.map((member, i) => (
-              <div key={i} className={clsx("team-member opacity-0 text-center", isAr && "font-arabic")}>
-                <div className="relative w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold/30">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                    sizes="192px"
-                  />
-                </div>
-                <h3 className={clsx("font-display text-xl font-semibold text-cream mb-1", isAr && "font-arabic")}>
-                  {member.name}
-                </h3>
-                <p className={clsx("font-sans text-sm text-gold", isAr && "font-arabic")}>
-                  {member.role}
                 </p>
               </div>
             ))}

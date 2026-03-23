@@ -112,17 +112,16 @@ const fr = {
         { value: "10 ans", label: "Expérience" },
       ],
       cta: "En savoir plus",
-      image:
-        "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=800&q=80",
-      imageAlt: "Femmes artisanes marocaines",
+      image: "/images/products/huile-argan.webp",
+      imageAlt: "Huile d'argan pure Argan Tassila",
     },
     instagram: {
       title: "Suivez notre quotidien",
       handle: "@argan_tassila",
       cta: "Voir sur Instagram",
       images: [
-        "https://images.unsplash.com/photo-1596203698703-b0f15d45f70e?w=400&q=80",
-        "https://images.unsplash.com/photo-1548393264-96b9b1151e93?w=400&q=80",
+        "/images/products/amlou-beldi.webp",
+        "/images/products/selou.webp",
         "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80",
         "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80",
         "https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=400&q=80",
@@ -153,8 +152,8 @@ const fr = {
       pullQuote:
         "Le secret de notre huile, c'est la patience et l'amour que ces femmes y mettent chaque jour.",
       image:
-        "https://images.unsplash.com/photo-1548393264-96b9b1151e93?w=900&q=80",
-      imageAlt: "Paysage arganier du Souss-Massa",
+        "https://images.unsplash.com/photo-1543362906-acfc16c67564?w=900&q=80",
+      imageAlt: "Produits artisanaux Argan Tassila",
     },
     values: {
       label: "NOS VALEURS",
@@ -189,20 +188,17 @@ const fr = {
         {
           name: "Fatima",
           role: "Responsable extraction",
-          image:
-            "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=500&q=80",
+          image: "/images/products/huile-argan.webp",
         },
         {
           name: "Khadija",
           role: "Maitresse du pressage",
-          image:
-            "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&q=80",
+          image: "/images/products/amlou-beldi.webp",
         },
         {
           name: "Zineb",
           role: "Coordinatrice qualite",
-          image:
-            "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500&q=80",
+          image: "/images/products/selou.webp",
         },
       ],
     },
@@ -360,7 +356,7 @@ const fr = {
         title: "Endemique du Maroc",
         text: "L'arganier ne pousse nulle part ailleurs dans le monde. Sa zone de croissance naturelle se limite au Maroc, principalement dans le Souss-Massa.",
         image:
-          "https://images.unsplash.com/photo-1548393264-96b9b1151e93?w=800&q=80",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
         imageAlt: "Paysage du Souss-Massa",
       },
       {
@@ -399,8 +395,8 @@ const fr = {
         "La ville d'Agadir, capitale regionale, sert de plaque tournante commerciale pour nos produits.",
       ],
       image:
-        "https://images.unsplash.com/photo-1548393264-96b9b1151e93?w=900&q=80",
-      imageAlt: "Paysage du Souss-Massa",
+        "https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=900&q=80",
+      imageAlt: "Terroir du Souss-Massa",
     },
     ecology: {
       label: "NOTRE ENGAGEMENT",
@@ -512,9 +508,8 @@ const fr = {
     ],
     banner: {
       quote: "Un geste, une tradition, un tresor.",
-      image:
-        "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=1920&q=80",
-      imageAlt: "Femmes artisanes de la cooperative",
+      image: "/images/products/pack-trio.webp",
+      imageAlt: "Produits Argan Tassila",
     },
   },
 
@@ -532,20 +527,20 @@ const fr = {
     ],
     images: [
       {
-        src: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&q=80",
-        alt: "Huile d'argan pure",
+        src: "/images/products/pack-trio.webp",
+        alt: "Produits Argan Tassila",
         caption: "L'or liquide du Maroc",
         category: "produits",
       },
       {
-        src: "https://images.unsplash.com/photo-1548393264-96b9b1151e93?w=800&q=80",
+        src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
         alt: "Paysage Souss-Massa",
         caption: "Notre terroir",
         category: "paysages",
       },
       {
-        src: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=800&q=80",
-        alt: "Femme artisane marocaine",
+        src: "/images/products/huile-argan.webp",
+        alt: "Huile d'argan Argan Tassila",
         caption: "Savoir-faire ancestral",
         category: "equipe",
       },
@@ -586,8 +581,8 @@ const fr = {
         category: "produits",
       },
       {
-        src: "https://images.unsplash.com/photo-1596203698703-b0f15d45f70e?w=800&q=80",
-        alt: "Flacon d'huile d'argan",
+        src: "/images/products/amlou-crispy-coco.webp",
+        alt: "Amlou crispy coco Argan Tassila",
         caption: "Collection Tassila",
         category: "produits",
       },
@@ -610,9 +605,9 @@ const fr = {
         category: "processus",
       },
       {
-        src: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80",
-        alt: "Artisane du Souss",
-        caption: "Femmes de Tassila",
+        src: "/images/products/amlou-beldi.webp",
+        alt: "Amlou beldi Argan Tassila",
+        caption: "Produits de Tassila",
         category: "equipe",
       },
       {

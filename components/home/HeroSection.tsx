@@ -116,7 +116,7 @@ export default function HeroSection() {
       {/* Right panel — image */}
       <div className="hero-image-panel hidden lg:block absolute inset-y-0 right-0 w-1/2 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=1200&q=80"
+          src="/images/products/pack-trio.webp"
           alt="Huile d'argan artisanale"
           fill
           className="object-cover object-center"
@@ -130,7 +130,7 @@ export default function HeroSection() {
       {/* Background pattern for mobile */}
       <div className="absolute inset-0 lg:hidden opacity-20">
         <Image
-          src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&q=80"
+          src="/images/products/pack-trio.webp"
           alt=""
           fill
           className="object-cover"
