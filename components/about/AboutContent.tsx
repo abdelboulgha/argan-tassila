@@ -25,10 +25,20 @@ export default function AboutContent() {
         { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power2.out",
           scrollTrigger: { trigger: ".about-story-text", start: "top 80%" } }
       );
-      gsap.fromTo(".about-story-img",
-        { opacity: 0, scale: 1.04 },
-        { opacity: 1, scale: 1, duration: 1.1, ease: "power2.out",
-          scrollTrigger: { trigger: ".about-story-img", start: "top 80%" } }
+      gsap.fromTo(".about-img-main",
+        { clipPath: "inset(0 0 100% 0)", scale: 1.05 },
+        { clipPath: "inset(0 0 0% 0)", scale: 1, duration: 1.2, ease: "power3.out",
+          scrollTrigger: { trigger: ".about-story-img", start: "top 75%" } }
+      );
+      gsap.fromTo(".about-img-secondary",
+        { clipPath: "inset(100% 0 0 0)", scale: 1.05 },
+        { clipPath: "inset(0% 0 0 0)", scale: 1, duration: 1.1, ease: "power3.out", delay: 0.25,
+          scrollTrigger: { trigger: ".about-story-img", start: "top 75%" } }
+      );
+      gsap.fromTo(".about-img-frame",
+        { opacity: 0, x: isAr ? -20 : 20 },
+        { opacity: 1, x: 0, duration: 0.8, ease: "power2.out", delay: 0.6,
+          scrollTrigger: { trigger: ".about-story-img", start: "top 75%" } }
       );
 
       // Values
@@ -118,19 +128,48 @@ export default function AboutContent() {
               </blockquote>
             </div>
             {/* Image */}
-            <div className="about-story-img opacity-0 relative">
-              <div className="relative h-[500px] overflow-hidden">
+            <div className="about-story-img relative h-[520px]">
+
+              {/* Main image — top-left (or top-right for AR) */}
+              <div className={clsx(
+                "about-img-main absolute top-0 w-[72%] h-[75%] overflow-hidden",
+                isAr ? "right-0" : "left-0"
+              )}>
                 <Image
-                  src={a.story.image}
-                  alt={a.story.imageAlt}
+                  src="/images/products/huile-argan.webp"
+                  alt="Huile d'argan pure Argan Tassila"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1024px) 60vw, 35vw"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-green/30 via-transparent to-transparent" />
               </div>
+
+              {/* Secondary image — bottom-right (or bottom-left for AR), overlapping */}
               <div className={clsx(
-                "absolute -bottom-4 w-3/4 h-full border border-gold/30 -z-10",
-                isAr ? "-left-4" : "-right-4"
+                "about-img-secondary absolute bottom-0 w-[58%] h-[55%] overflow-hidden border-4 border-white",
+                isAr ? "left-0" : "right-0"
+              )}>
+                <Image
+                  src="/images/products/amlou-beldi.webp"
+                  alt="Amlou beldi artisanal"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 40vw, 25vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-green/20 via-transparent to-transparent" />
+              </div>
+
+              {/* Gold decorative frame */}
+              <div className={clsx(
+                "about-img-frame absolute w-[72%] h-[75%] border border-gold/40 -z-10",
+                isAr ? "top-3 right-3" : "top-3 left-3"
+              )} />
+
+              {/* Gold accent line */}
+              <div className={clsx(
+                "absolute top-[74%] h-px w-12 bg-gold",
+                isAr ? "right-[58%] -translate-x-2" : "left-[72%] translate-x-2"
               )} />
             </div>
           </div>
