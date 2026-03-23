@@ -69,18 +69,13 @@ export default function Navbar() {
         aria-label="Navigation principale"
       >
         <div
-          className={clsx(
-            "max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-20",
-            isAr && "flex-row-reverse"
-          )}
+          dir={isAr ? "rtl" : "ltr"}
+          className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-20"
         >
           {/* Logo */}
           <Link
             href="/"
-            className={clsx(
-              "flex items-center gap-3 flex-shrink-0",
-              isAr && "flex-row-reverse"
-            )}
+            className="flex items-center gap-3 flex-shrink-0"
             aria-label="Argan Tassila — Accueil"
           >
             <div className="relative w-14 h-14 flex-shrink-0">
@@ -96,12 +91,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <div
-            className={clsx(
-              "hidden lg:flex items-center gap-8",
-              isAr && "flex-row-reverse"
-            )}
-          >
+          <div className="hidden lg:flex items-center gap-8">
             {t.nav.links.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -126,12 +116,7 @@ export default function Navbar() {
           </div>
 
           {/* Right side: Lang + WhatsApp */}
-          <div
-            className={clsx(
-              "hidden lg:flex items-center gap-4",
-              isAr && "flex-row-reverse"
-            )}
-          >
+          <div className="hidden lg:flex items-center gap-4">
             <LanguageSwitcher light={!isScrolled && isHomePage} />
             <a
               href={buildWhatsAppURL(undefined, lang)}

@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
-const TOTAL_FRAMES = 300;
+const TOTAL_FRAMES = 192;
 
 function getFrameSrc(index: number): string {
   // index is 0-based → file is 1-based, zero-padded to 3 digits
