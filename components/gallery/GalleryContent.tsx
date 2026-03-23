@@ -73,7 +73,7 @@ export default function GalleryContent() {
                   "flex-shrink-0 font-sans text-xs tracking-widest uppercase px-5 py-2.5 transition-all duration-200",
                   activeCategory === cat.id
                     ? "bg-green text-cream"
-                    : "text-muted hover:text-green hover:bg-cream",
+                    : "text-muted hover:text-green btn-slide btn-fill-cream",
                   isAr && "font-arabic text-sm tracking-normal"
                 )}
               >
@@ -133,7 +133,7 @@ export default function GalleryContent() {
             target="_blank"
             rel="noopener noreferrer"
             className={clsx(
-              "inline-flex items-center gap-3 font-sans text-xs tracking-widest uppercase border border-green text-green px-8 py-4 hover:bg-green hover:text-cream transition-all duration-300",
+              "inline-flex items-center gap-3 font-sans text-xs tracking-widest uppercase border border-green text-green px-8 py-4 btn-slide btn-fill-green hover:text-cream",
               isAr && "flex-row-reverse"
             )}
           >

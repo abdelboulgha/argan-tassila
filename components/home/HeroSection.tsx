@@ -86,14 +86,14 @@ export default function HeroSection() {
         >
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase bg-gold text-white px-7 py-4 hover:bg-gold-light transition-colors duration-300"
+            className="inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase bg-gold text-white px-7 py-4 btn-slide btn-fill-gold-light"
           >
             {h.cta1}
             <ArrowRight />
           </Link>
           <Link
             href="/about"
-            className="inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase border border-cream/40 text-cream px-7 py-4 hover:border-cream hover:bg-cream/10 transition-all duration-300"
+            className="inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase border border-cream/40 text-cream px-7 py-4 hover:border-cream btn-slide btn-fill-white-soft"
           >
             {h.cta2}
           </Link>

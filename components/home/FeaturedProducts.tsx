@@ -137,7 +137,7 @@ export default function FeaturedProducts() {
         <div className="mt-10 flex justify-center md:hidden">
           <Link
             href="/products"
-            className="font-sans text-xs tracking-widest uppercase border border-green text-green px-8 py-3 hover:bg-green hover:text-cream transition-all duration-300"
+            className="font-sans text-xs tracking-widest uppercase border border-green text-green px-8 py-3 btn-slide btn-fill-green hover:text-cream"
           >
             {f.discover}
           </Link>

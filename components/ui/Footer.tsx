@@ -135,7 +135,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className={clsx(
-                "mt-3 inline-flex items-center gap-2 font-sans text-xs tracking-widest uppercase bg-gold/20 border border-gold/40 text-gold hover:bg-gold hover:text-white px-4 py-2.5 transition-all duration-300",
+                "mt-3 inline-flex items-center gap-2 font-sans text-xs tracking-widest uppercase bg-gold/20 border border-gold/40 text-gold px-4 py-2.5 btn-slide btn-fill-gold hover:text-white",
                 isAr && "flex-row-reverse"
               )}
             >

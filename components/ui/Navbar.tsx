@@ -126,8 +126,8 @@ export default function Navbar() {
               className={clsx(
                 "flex items-center gap-2 font-sans text-xs font-medium tracking-widest uppercase px-4 py-2.5 transition-all duration-300",
                 isScrolled || !isHomePage
-                  ? "bg-green text-white hover:bg-green-dark"
-                  : "bg-white/20 text-white border border-white/40 hover:bg-white/30 backdrop-blur-sm"
+                  ? "bg-green text-white btn-slide btn-fill-green-dark"
+                  : "bg-white/20 text-white border border-white/40 btn-slide btn-fill-white-hover backdrop-blur-sm"
               )}
             >
               <WhatsAppSVG />

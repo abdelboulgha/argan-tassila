@@ -72,7 +72,7 @@ export default function ProductsContent() {
                   "flex-shrink-0 font-sans text-xs tracking-widest uppercase px-5 py-2.5 transition-all duration-200",
                   activeFilter === filter.id
                     ? "bg-green text-cream"
-                    : "text-muted hover:text-green hover:bg-cream",
+                    : "text-muted hover:text-green btn-slide btn-fill-cream",
                   isAr && "font-arabic text-sm tracking-normal"
                 )}
               >
@@ -126,7 +126,7 @@ export default function ProductsContent() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={clsx(
-                        "inline-flex items-center gap-2 font-sans text-xs tracking-widest uppercase bg-green text-cream px-4 py-2.5 hover:bg-green-dark transition-colors duration-200",
+                        "inline-flex items-center gap-2 font-sans text-xs tracking-widest uppercase bg-green text-cream px-4 py-2.5 btn-slide btn-fill-green-dark",
                         isAr && "flex-row-reverse"
                       )}
                     >
@@ -170,7 +170,7 @@ export default function ProductsContent() {
             target="_blank"
             rel="noopener noreferrer"
             className={clsx(
-              "inline-flex items-center gap-3 font-sans text-sm font-semibold tracking-widest uppercase bg-green text-cream px-10 py-5 hover:bg-green-dark transition-colors duration-300",
+              "inline-flex items-center gap-3 font-sans text-sm font-semibold tracking-widest uppercase bg-green text-cream px-10 py-5 btn-slide btn-fill-green-dark",
               isAr && "flex-row-reverse"
             )}
           >

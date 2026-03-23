@@ -102,7 +102,7 @@ export default function ContactContent() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={clsx(
-                  "mt-4 inline-flex items-center gap-3 font-sans text-xs font-semibold tracking-widest uppercase bg-green text-cream px-8 py-4 hover:bg-green-dark transition-colors duration-300 w-fit",
+                  "mt-4 inline-flex items-center gap-3 font-sans text-xs font-semibold tracking-widest uppercase bg-green text-cream px-8 py-4 btn-slide btn-fill-green-dark w-fit",
                   isAr && "flex-row-reverse"
                 )}
               >
@@ -238,7 +238,7 @@ export default function ContactContent() {
                   <button
                     type="submit"
                     className={clsx(
-                      "inline-flex items-center gap-3 font-sans text-xs font-semibold tracking-widest uppercase bg-gold text-white px-8 py-4 hover:bg-gold-light transition-colors duration-300 self-start",
+                      "inline-flex items-center gap-3 font-sans text-xs font-semibold tracking-widest uppercase bg-gold text-white px-8 py-4 btn-slide btn-fill-gold-light self-start",
                       isAr && "flex-row-reverse self-end"
                     )}
                   >

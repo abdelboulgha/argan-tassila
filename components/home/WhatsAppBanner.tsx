@@ -40,7 +40,7 @@ export default function WhatsAppBanner() {
           target="_blank"
           rel="noopener noreferrer"
           className={clsx(
-            "flex-shrink-0 inline-flex items-center gap-3 font-sans text-xs font-semibold tracking-widest uppercase bg-white text-green px-8 py-4 hover:bg-cream transition-colors duration-300",
+            "flex-shrink-0 inline-flex items-center gap-3 font-sans text-xs font-semibold tracking-widest uppercase bg-white text-green px-8 py-4 btn-slide btn-fill-cream-white",
             isAr && "flex-row-reverse"
           )}
         >

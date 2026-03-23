@@ -29,13 +29,13 @@ const WhatsAppIcon = () => (
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-green text-white border-2 border-green hover:bg-green-mid hover:border-green-mid active:scale-[0.98]",
+    "bg-green text-white border-2 border-green btn-slide btn-fill-green-dark active:scale-[0.98]",
   outline:
-    "bg-transparent text-green border-2 border-green hover:bg-green hover:text-white active:scale-[0.98]",
+    "bg-transparent text-green border-2 border-green btn-slide btn-fill-green hover:text-white active:scale-[0.98]",
   "outline-cream":
-    "bg-transparent text-cream border-2 border-cream hover:bg-cream hover:text-green active:scale-[0.98]",
+    "bg-transparent text-cream border-2 border-cream btn-slide btn-fill-cream hover:text-green active:scale-[0.98]",
   whatsapp:
-    "bg-green text-white border-2 border-green hover:bg-green-mid hover:border-green-mid active:scale-[0.98] flex items-center gap-2",
+    "bg-green text-white border-2 border-green btn-slide btn-fill-green-dark flex items-center gap-2 active:scale-[0.98]",
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -55,7 +55,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const classes = twMerge(
       clsx(
-        "inline-flex items-center justify-center gap-2 px-7 py-3.5 font-sans text-sm font-medium tracking-widest uppercase transition-all duration-250 rounded-none cursor-pointer select-none",
+        "inline-flex items-center justify-center gap-2 px-7 py-3.5 font-sans text-sm font-medium tracking-widest uppercase rounded-none cursor-pointer select-none",
         variantStyles[variant],
         fullWidth && "w-full",
         className
