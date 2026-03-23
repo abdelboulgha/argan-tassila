@@ -36,7 +36,7 @@ const fr = {
     email: "argantassila@gmail.com",
     instagram: "@argan_tassila",
     copyright: "2024 Argan Tassila Cooperative. Tous droits reserves.",
-    madeWith: "Fait avec amour au Souss-Massa",
+    madeWith: "",
     followUs: "Suivez-nous",
   },
 
