@@ -348,32 +348,31 @@ const fr = {
         title: "Argania spinosa",
         text: "L'arganier est un arbre endemique du Maroc, pouvant vivre jusqu'a 200 ans. Ses racines profondes stabilisent les sols et ses fruits produisent l'huile la plus precieuse du monde.",
         image:
-          "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
-        imageAlt: "Arganier en fleur",
+          "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80",
+        imageAlt: "Arganier et ses fruits",
       },
       {
         label: "LE TERRITOIRE",
         title: "Endemique du Maroc",
         text: "L'arganier ne pousse nulle part ailleurs dans le monde. Sa zone de croissance naturelle se limite au Maroc, principalement dans le Souss-Massa.",
         image:
-          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-        imageAlt: "Paysage du Souss-Massa",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+        imageAlt: "Paysage du Maroc",
       },
       {
         label: "UNESCO 1998",
         title: "Patrimoine mondial",
         text: "L'arganeraie marocaine est inscrite au patrimoine mondial de l'UNESCO depuis 1998 comme reserve de biosphere. Cette reconnaissance protege cet ecosysteme unique.",
-        image:
-          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-        imageAlt: "Vue aerienne de l'arganeraie",
+        image: "/images/products/pack-trio.webp",
+        imageAlt: "Produits artisanaux issus de l'arganeraie",
       },
       {
         label: "L'ECOSYSTEME",
         title: "L'Arganeraie du Souss",
         text: "Plus de 800 000 hectares d'arganeraie abritent une biodiversite remarquable. Cet ecosysteme fragile est garde par les communautes locales.",
         image:
-          "https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=800&q=80",
-        imageAlt: "Arganeraie du Souss-Massa",
+          "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80",
+        imageAlt: "Foret et ecosysteme naturel",
       },
     ],
     unesco: {
@@ -395,7 +394,7 @@ const fr = {
         "La ville d'Agadir, capitale regionale, sert de plaque tournante commerciale pour nos produits.",
       ],
       image:
-        "https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=900&q=80",
+        "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=900&q=80",
       imageAlt: "Terroir du Souss-Massa",
     },
     ecology: {
