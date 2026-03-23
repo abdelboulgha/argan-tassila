@@ -29,16 +29,13 @@ export default function Footer() {
               className={clsx("flex items-center gap-3", isAr && "flex-row-reverse")}
               aria-label="Argan Tassila"
             >
-              <div className="relative w-10 h-10 flex-shrink-0">
+              <div className="relative w-14 h-14 flex-shrink-0">
                 <Image
                   src="/logo.png"
-                  alt="Logo"
+                  alt="Argan Tassila Cooperative"
                   fill
                   className="object-contain brightness-0 invert"
-                  sizes="40px"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
+                  sizes="56px"
                 />
               </div>
               <span

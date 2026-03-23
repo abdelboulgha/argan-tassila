@@ -83,27 +83,16 @@ export default function Navbar() {
             )}
             aria-label="Argan Tassila — Accueil"
           >
-            <div className="relative w-10 h-10 flex-shrink-0">
+            <div className="relative w-14 h-14 flex-shrink-0">
               <Image
                 src="/logo.png"
-                alt="Logo Argan Tassila"
+                alt="Argan Tassila Cooperative"
                 fill
                 className="object-contain"
                 priority
-                sizes="40px"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
+                sizes="56px"
               />
             </div>
-            <span
-              className={clsx(
-                "font-display text-sm font-semibold tracking-[0.2em] uppercase leading-tight hidden sm:block",
-                isScrolled || !isHomePage ? "text-green" : "text-cream"
-              )}
-            >
-              {t.nav.logo}
-            </span>
           </Link>
 
           {/* Desktop Nav Links */}
