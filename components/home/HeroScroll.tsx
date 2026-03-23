@@ -203,8 +203,8 @@ export default function HeroScroll() {
   }, []);
 
   return (
-    // 300vh section — the extra height creates the scroll distance
-    <section ref={sectionRef} style={{ height: "300vh" }}>
+    // 600vh section — more scroll distance = slower, more cinematic animation
+    <section ref={sectionRef} style={{ height: "600vh" }}>
       {/* Sticky viewport: follows scroll but stays on-screen */}
       <div
         ref={stickyRef}
