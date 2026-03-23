@@ -78,7 +78,7 @@ export default function Footer() {
               </div>
             </Link>
 
-            <p className={clsx("font-sans text-sm leading-relaxed text-cream/55 max-w-sm", isAr && "font-arabic")}>
+            <p className={clsx("font-sans text-sm leading-relaxed text-cream/80 max-w-sm", isAr && "font-arabic")}>
               {t.footer.description}
             </p>
 
@@ -121,7 +121,7 @@ export default function Footer() {
                 key={link.href}
                 href={link.href}
                 className={clsx(
-                  "group font-sans text-sm text-cream/50 hover:text-cream transition-colors duration-200 py-1 w-fit flex items-center gap-2",
+                  "group font-sans text-sm text-cream/75 hover:text-cream transition-colors duration-200 py-1 w-fit flex items-center gap-2",
                   isAr && "font-arabic flex-row-reverse"
                 )}
               >
@@ -144,7 +144,7 @@ export default function Footer() {
                 key={link.label}
                 href={link.href}
                 className={clsx(
-                  "group font-sans text-sm text-cream/50 hover:text-cream transition-colors duration-200 py-1 w-fit flex items-center gap-2",
+                  "group font-sans text-sm text-cream/75 hover:text-cream transition-colors duration-200 py-1 w-fit flex items-center gap-2",
                   isAr && "font-arabic flex-row-reverse"
                 )}
               >
@@ -165,7 +165,7 @@ export default function Footer() {
 
             <div className={clsx("flex items-start gap-3", isAr && "flex-row-reverse")}>
               <MapPinIcon />
-              <p className={clsx("font-sans text-sm text-cream/50 leading-relaxed", isAr && "font-arabic")}>
+              <p className={clsx("font-sans text-sm text-cream/80 leading-relaxed", isAr && "font-arabic")}>
                 {t.footer.address}
               </p>
             </div>
@@ -175,7 +175,7 @@ export default function Footer() {
               className={clsx("flex items-center gap-3 group", isAr && "flex-row-reverse")}
             >
               <PhoneIcon />
-              <span className={clsx("font-sans text-sm text-cream/50 group-hover:text-cream transition-colors duration-200", isAr && "font-arabic")}>
+              <span className={clsx("font-sans text-sm text-cream/50 group-hover:text-cream transition-colors duration-200 text-cream/80", isAr && "font-arabic")}>
                 {t.footer.phone}
               </span>
             </a>
@@ -185,7 +185,7 @@ export default function Footer() {
               className={clsx("flex items-center gap-3 group", isAr && "flex-row-reverse")}
             >
               <MailIcon />
-              <span className="font-sans text-sm text-cream/50 group-hover:text-cream transition-colors duration-200">
+              <span className="font-sans text-sm text-cream/80 group-hover:text-cream transition-colors duration-200">
                 {t.footer.email}
               </span>
             </a>
@@ -200,10 +200,10 @@ export default function Footer() {
           "max-w-7xl mx-auto px-6 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-3",
           isAr && "md:flex-row-reverse"
         )}>
-          <p className={clsx("font-sans text-xs text-cream/25", isAr && "font-arabic")}>
+          <p className={clsx("font-sans text-xs text-cream/50", isAr && "font-arabic")}>
             &copy; {t.footer.copyright}
           </p>
-          <p className={clsx("font-sans text-xs text-cream/25 flex items-center gap-1.5", isAr && "flex-row-reverse font-arabic")}>
+          <p className={clsx("font-sans text-xs text-cream/50 flex items-center gap-1.5", isAr && "flex-row-reverse font-arabic")}>
             <span className="w-3 h-px bg-gold/30" />
             {t.footer.madeWith}
           </p>
