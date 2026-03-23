@@ -117,7 +117,7 @@ export default function ProductsContent() {
                   <p className={clsx("font-sans text-sm leading-relaxed text-muted mb-4", isAr && "font-arabic")}>
                     {product.description}
                   </p>
-                  <div className={clsx("flex items-center justify-between", isAr && "flex-row-reverse")}>
+                  <div className={clsx("flex flex-col gap-3", isAr && "items-end")}>
                     <span className="font-display text-base font-semibold text-gold">
                       {product.price}
                     </span>
@@ -126,7 +126,7 @@ export default function ProductsContent() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={clsx(
-                        "inline-flex items-center gap-2 font-sans text-xs tracking-widest uppercase bg-green text-cream px-4 py-2.5 btn-slide btn-fill-green-dark",
+                        "inline-flex items-center gap-2 font-sans text-xs tracking-widest uppercase bg-green text-cream px-4 py-2.5 btn-slide btn-fill-green-dark whitespace-nowrap w-full justify-center",
                         isAr && "flex-row-reverse"
                       )}
                     >
