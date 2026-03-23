@@ -200,30 +200,7 @@ export default function OriginsContent() {
                 </p>
               ))}
             </div>
-            <div className="relative">
-              <div className={clsx(
-                "absolute w-full h-full border border-gold/40 -z-10",
-                isAr ? "-top-3 -left-3" : "-top-3 -right-3"
-              )} />
-              <div className="panel-img-wrap relative h-96 overflow-hidden group">
-                <Image
-                  src={o.region.image}
-                  alt={o.region.imageAlt}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-green/40 via-transparent to-transparent" />
-                <div className={clsx(
-                  "absolute bottom-4 bg-green/85 backdrop-blur-sm px-3 py-1.5",
-                  isAr ? "left-4" : "right-4"
-                )}>
-                  <span className="font-sans text-[8px] tracking-[0.2em] uppercase text-gold">
-                    {o.region.label}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <MoroccoMap isAr={isAr} />
           </div>
         </div>
       </section>
@@ -256,6 +233,51 @@ export default function OriginsContent() {
           </div>
         </div>
       </section>
+    </div>
+  );
+}
+
+function MoroccoMap({ isAr }: { isAr: boolean }) {
+  return (
+    <div className="relative">
+      {/* Offset gold frame */}
+      <div className={clsx(
+        "absolute w-full h-full border border-gold/40 -z-10",
+        isAr ? "-top-3 -left-3" : "-top-3 -right-3"
+      )} />
+
+      <div className="relative overflow-hidden bg-[#c8e4f0]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/morocco.svg"
+          alt="Carte du Maroc — Région Souss-Massa mise en évidence"
+          className="w-full h-auto object-contain block"
+        />
+
+        {/* Floating label — Souss-Massa */}
+        <div className={clsx(
+          "absolute top-4 bg-green/90 backdrop-blur-sm px-4 py-2 flex flex-col gap-0.5",
+          isAr ? "left-4" : "right-4"
+        )}>
+          <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-gold">Région</span>
+          <span className={clsx("font-display text-sm font-bold text-cream", isAr && "font-arabic")}>
+            {isAr ? "سوس-ماسة" : "Souss-Massa"}
+          </span>
+        </div>
+
+        {/* Floating info card — Agadir */}
+        <div className={clsx(
+          "absolute bottom-4 bg-white/95 border-l-2 border-gold px-4 py-2.5",
+          isAr ? "right-4 border-l-0 border-r-2" : "left-4"
+        )}>
+          <p className="font-sans text-[8px] tracking-widest uppercase text-muted">
+            {isAr ? "عاصمة المنطقة" : "Capitale régionale"}
+          </p>
+          <p className={clsx("font-display text-sm font-bold text-green mt-0.5", isAr && "font-arabic")}>
+            {isAr ? "أگادير · أيدير" : "Agadir · Aïdir"}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

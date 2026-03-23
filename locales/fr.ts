@@ -389,13 +389,12 @@ const fr = {
       label: "NOTRE TERROIR",
       title: "Le Souss-Massa",
       paragraphs: [
-        "La region du Souss-Massa, nichee entre le Haut Atlas et l'Anti-Atlas, beneficie d'un microclimat unique qui favorise la croissance de l'arganier.",
-        "Le Souss-Massa est l'une des regions les plus fertiles du Maroc, connue pour ses orangeraies, ses cultures maraicheres et bien sur ses arganeraies.",
-        "La ville d'Agadir, capitale regionale, sert de plaque tournante commerciale pour nos produits.",
+        "C'est dans le village d'Aidir, au coeur de la province d'Agadir-Idaoutanane, que notre cooperative a vu le jour. Une terre baignee de soleil, encadree par le Haut Atlas et l'Anti-Atlas, ou l'arganier pousse depuis des millenaires.",
+        "L'arganeraie du Souss-Massa couvre plus de 800 000 hectares classes par l'UNESCO. Nos artisanes recoltent les fruits de ces arbres centenaires selon des methodes transmises de generation en generation.",
+        "Chaque produit Argan Tassila porte en lui l'identite de cette region exceptionnelle — son sol, son climat, et le savoir-faire irreplacable de ses femmes.",
       ],
-      image:
-        "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=900&q=80",
-      imageAlt: "Terroir du Souss-Massa",
+      image: "/images/products/zemita.webp",
+      imageAlt: "Produits artisanaux du Souss-Massa",
     },
     ecology: {
       label: "NOTRE ENGAGEMENT",
