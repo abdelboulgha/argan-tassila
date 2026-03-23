@@ -51,10 +51,25 @@ export default function HeroScroll() {
     if (!ctx) return;
 
     // ── Resize ──────────────────────────────────────────────────────────────
+    // Use devicePixelRatio so the canvas is sharp on retina / HiDPI screens.
+    // The CSS size stays 100% of the viewport; only the internal buffer grows.
     function resize() {
       if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = window.devicePixelRatio || 1;
+      const cssW = window.innerWidth;
+      const cssH = window.innerHeight;
+
+      // Internal buffer = CSS size × DPR (full sharpness)
+      canvas.width = cssW * dpr;
+      canvas.height = cssH * dpr;
+
+      // Keep the canvas visually the same size
+      canvas.style.width = `${cssW}px`;
+      canvas.style.height = `${cssH}px`;
+
+      // Scale the 2D context so every draw call is in CSS-pixel units
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+
       renderFrame(Math.round(frameObj.current.current));
     }
 
@@ -67,10 +82,11 @@ export default function HeroScroll() {
       const img = imagesRef.current[index];
       if (!img?.complete || !img.naturalWidth) return;
 
-      const cw = canvas.width;
-      const ch = canvas.height;
+      // Work in CSS-pixel space (context already scaled by DPR in resize())
+      const cw = window.innerWidth;
+      const ch = window.innerHeight;
 
-      // Cover-fit: scale image so it fills the canvas
+      // Strict cover-fit: image always fills the entire canvas edge-to-edge
       const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
       const dw = img.naturalWidth * scale;
       const dh = img.naturalHeight * scale;
