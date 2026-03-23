@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/lib/i18n";
 import { LenisProvider } from "@/lib/lenis";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -63,6 +64,7 @@ export default function RootLayout({
             <Navbar />
             <main>{children}</main>
             <Footer />
+            <WhatsAppFloat />
           </LenisProvider>
         </LanguageProvider>
       </body>
