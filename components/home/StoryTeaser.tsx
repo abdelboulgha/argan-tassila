@@ -123,22 +123,83 @@ export default function StoryTeaser() {
             </Link>
           </div>
 
-          {/* Image side */}
+          {/* Image grid — magazine editorial */}
           <div className="story-image opacity-0 relative">
-            <div className="relative h-96 md:h-[500px] overflow-hidden">
-              <Image
-                src={s.image}
-                alt={s.imageAlt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-            {/* Decorative gold border */}
+
+            {/* Outer corner brackets */}
             <div className={clsx(
-              "absolute -bottom-4 w-2/3 h-full border border-gold/30 -z-10",
-              isAr ? "-left-4" : "-right-4"
+              "absolute -top-3 w-8 h-8 border-t-2 border-gold z-10",
+              isAr ? "-right-3 border-r-2" : "-left-3 border-l-2"
             )} />
+            <div className={clsx(
+              "absolute -bottom-3 w-8 h-8 border-b-2 border-gold/50 z-10",
+              isAr ? "-left-3 border-l-2" : "-right-3 border-r-2"
+            )} />
+
+            {/* Grid container — gold gap = separator lines */}
+            <div className={clsx(
+              "grid gap-[3px] bg-gold/40 h-[480px] md:h-[540px]",
+              isAr ? "grid-cols-[2fr_3fr]" : "grid-cols-[3fr_2fr]"
+            )}>
+
+              {/* ── Main image (tall, occupies full height) ── */}
+              <div className={clsx(
+                "row-span-2 relative overflow-hidden group",
+                isAr ? "order-2" : "order-1"
+              )}>
+                <Image
+                  src="/images/products/huile-argan.webp"
+                  alt="Huile d'argan pure Argan Tassila"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 50vw, 30vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-green/50 via-transparent to-transparent" />
+              </div>
+
+              {/* ── Top small image ── */}
+              <div className={clsx(
+                "relative overflow-hidden group",
+                isAr ? "order-1" : "order-2"
+              )}>
+                <Image
+                  src="/images/products/pack-trio.webp"
+                  alt="Pack Trio Amlou Argan Tassila"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 30vw, 20vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-green/30" />
+                <span className={clsx(
+                  "absolute bottom-3 font-sans text-[9px] tracking-widest uppercase text-cream/80",
+                  isAr ? "right-3 font-arabic" : "left-3"
+                )}>
+                  {isAr ? "طقم الثلاثة" : "Pack Trio"}
+                </span>
+              </div>
+
+              {/* ── Bottom small image ── */}
+              <div className={clsx(
+                "relative overflow-hidden group",
+                isAr ? "order-1" : "order-3"
+              )}>
+                <Image
+                  src="/images/products/amlou-beldi.webp"
+                  alt="Amlou Beldi Amande Argan Tassila"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 30vw, 20vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-green/30" />
+                <span className={clsx(
+                  "absolute bottom-3 font-sans text-[9px] tracking-widest uppercase text-cream/80",
+                  isAr ? "right-3 font-arabic" : "left-3"
+                )}>
+                  {isAr ? "أملو بلدي" : "Amlou Beldi"}
+                </span>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
