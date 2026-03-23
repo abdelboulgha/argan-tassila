@@ -41,6 +41,20 @@ const fr = {
   },
 
   home: {
+    heroScroll: {
+      texts: [
+        "Au cœur de la nature",
+        "Ingrédients 100% naturels",
+        "Savoir-faire traditionnel",
+        "Fabriqué avec soin",
+        "Riche en goût et en bienfaits",
+        "Argan Tassila",
+      ],
+      tagline: "Le choix de la qualité",
+      scroll: "Défiler",
+      cta1: "Voir nos produits",
+      cta2: "Notre histoire",
+    },
     hero: {
       badge: "COOPERATIVE ARTISANALE · SOUSS-MASSA · MAROC",
       title1: "L'or liquide",

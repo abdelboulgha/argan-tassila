@@ -1,0 +1,328 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { clsx } from "clsx";
+import { useLanguage } from "@/lib/i18n";
+import { buildWhatsAppURL } from "@/lib/whatsapp";
+
+gsap.registerPlugin(ScrollTrigger);
+
+// ─── Constants ───────────────────────────────────────────────────────────────
+
+const TOTAL_FRAMES = 300;
+
+function getFrameSrc(index: number): string {
+  // index is 0-based → file is 1-based, zero-padded to 3 digits
+  return `/frames/ezgif-frame-${String(index + 1).padStart(3, "0")}.jpg`;
+}
+
+// ─── Component ────────────────────────────────────────────────────────────────
+
+export default function HeroScroll() {
+  const { t, lang } = useLanguage();
+  const isAr = lang === "ar";
+  const h = t.home.heroScroll;
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasWrapRef = useRef<HTMLDivElement>(null);
+  const textRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const scrollHintRef = useRef<HTMLDivElement>(null);
+
+  // Mutable state shared with GSAP (no re-renders)
+  const frameObj = useRef({ current: 0 });
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+
+  // Loading progress for the bottom progress bar
+  const [loadPct, setLoadPct] = useState(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const canvasWrap = canvasWrapRef.current;
+    const section = sectionRef.current;
+    if (!canvas || !canvasWrap || !section) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // ── Resize ──────────────────────────────────────────────────────────────
+    function resize() {
+      if (!canvas) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      renderFrame(Math.round(frameObj.current.current));
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    // ── Frame renderer ───────────────────────────────────────────────────────
+    function renderFrame(index: number) {
+      if (!canvas || !ctx) return;
+      const img = imagesRef.current[index];
+      if (!img?.complete || !img.naturalWidth) return;
+
+      const cw = canvas.width;
+      const ch = canvas.height;
+
+      // Cover-fit: scale image so it fills the canvas
+      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+      const dw = img.naturalWidth * scale;
+      const dh = img.naturalHeight * scale;
+      const dx = (cw - dw) / 2;
+      const dy = (ch - dh) / 2;
+
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(img, dx, dy, dw, dh);
+    }
+
+    // ── Preload all frames ───────────────────────────────────────────────────
+    let loaded = 0;
+    const imgs: HTMLImageElement[] = Array.from(
+      { length: TOTAL_FRAMES },
+      (_, i) => {
+        const img = new window.Image();
+        img.src = getFrameSrc(i);
+        img.onload = () => {
+          loaded++;
+          setLoadPct(Math.round((loaded / TOTAL_FRAMES) * 100));
+          // Show first frame as soon as it's ready
+          if (loaded === 1) renderFrame(0);
+          // Build GSAP animation only after all frames are loaded
+          if (loaded === TOTAL_FRAMES) buildAnimation();
+        };
+        return img;
+      }
+    );
+    imagesRef.current = imgs;
+
+    // ── GSAP scroll animation ────────────────────────────────────────────────
+    function buildAnimation() {
+      const texts = textRefs.current.filter(Boolean) as HTMLDivElement[];
+      const DURATION = 10; // normalized timeline duration
+      const segLen = DURATION / texts.length; // each text owns this slice
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section!,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.5, // 1.5 s lag for smooth feel
+        },
+      });
+
+      // ── Frame sequence driven by scroll ──
+      tl.to(
+        frameObj.current,
+        {
+          current: TOTAL_FRAMES - 1,
+          ease: "none",
+          duration: DURATION,
+          onUpdate() {
+            renderFrame(Math.round(frameObj.current.current));
+          },
+        },
+        0
+      );
+
+      // ── Subtle zoom on the canvas wrapper ──
+      tl.fromTo(
+        canvasWrap!,
+        { scale: 1 },
+        { scale: 1.07, ease: "none", duration: DURATION },
+        0
+      );
+
+      // ── Text fade-in → hold → fade-out ──
+      // Each text occupies [i * segLen, (i+1) * segLen] on the timeline.
+      // We split that slice: 20% fade-in | 55% hold | 20% fade-out | 5% gap
+      texts.forEach((el, i) => {
+        const start = i * segLen;
+        const fadeIn = segLen * 0.2;
+        const hold = segLen * 0.55;
+        const fadeOut = segLen * 0.2;
+
+        tl.fromTo(
+          el,
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, ease: "power2.out", duration: fadeIn },
+          start
+        ).to(
+          el,
+          { opacity: 0, y: -28, ease: "power2.in", duration: fadeOut },
+          start + fadeIn + hold
+        );
+      });
+
+      // ── CTA block fades in during the last 15% of the scroll ──
+      if (ctaRef.current) {
+        tl.fromTo(
+          ctaRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, ease: "power2.out", duration: DURATION * 0.1 },
+          DURATION * 0.85
+        );
+      }
+
+      // ── Scroll hint fades out after first 5% of scroll ──
+      if (scrollHintRef.current) {
+        tl.to(
+          scrollHintRef.current,
+          { opacity: 0, duration: DURATION * 0.05, ease: "power1.in" },
+          DURATION * 0.05
+        );
+      }
+    }
+
+    // ── Cleanup ──────────────────────────────────────────────────────────────
+    return () => {
+      window.removeEventListener("resize", resize);
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
+
+  return (
+    // 300vh section — the extra height creates the scroll distance
+    <section ref={sectionRef} style={{ height: "300vh" }}>
+      {/* Sticky viewport: follows scroll but stays on-screen */}
+      <div
+        ref={stickyRef}
+        className="sticky top-0 h-screen overflow-hidden bg-black"
+      >
+        {/* Canvas wrapper — scaled by GSAP for zoom effect */}
+        <div
+          ref={canvasWrapRef}
+          className="absolute inset-0"
+          style={{ transformOrigin: "center center" }}
+        >
+          <canvas ref={canvasRef} className="absolute inset-0" />
+        </div>
+
+        {/* Cinematic gradient overlay — improves text legibility */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.45) 100%)",
+          }}
+        />
+
+        {/* ── Text overlays ─────────────────────────────────────────────── */}
+        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+          {h.texts.map((text, i) => {
+            const isLast = i === h.texts.length - 1;
+            return (
+              <div
+                key={i}
+                ref={(el) => {
+                  textRefs.current[i] = el;
+                }}
+                className={clsx(
+                  "absolute opacity-0 text-center px-8 max-w-4xl w-full",
+                  isAr && "font-arabic"
+                )}
+                style={{ willChange: "opacity, transform" }}
+              >
+                {isLast ? (
+                  // Last slide — brand sign-off with decorative line
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-12 h-px bg-gold/80" />
+                    <p
+                      className={clsx(
+                        "text-white font-display leading-none drop-shadow-2xl",
+                        "text-5xl md:text-7xl lg:text-8xl font-bold"
+                      )}
+                    >
+                      {text}
+                    </p>
+                    <p
+                      className={clsx(
+                        "text-gold font-sans tracking-[0.25em] uppercase text-sm md:text-base",
+                        isAr && "tracking-normal"
+                      )}
+                    >
+                      {h.tagline}
+                    </p>
+                    <div className="w-12 h-px bg-gold/80" />
+                  </div>
+                ) : (
+                  // Regular slide
+                  <p
+                    className={clsx(
+                      "text-white font-display font-bold leading-tight drop-shadow-2xl",
+                      "text-4xl md:text-5xl lg:text-6xl"
+                    )}
+                  >
+                    {text}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ── CTA buttons (appear at end of sequence) ───────────────────── */}
+        <div
+          ref={ctaRef}
+          className={clsx(
+            "absolute bottom-20 left-0 right-0 z-10 flex justify-center gap-4 opacity-0",
+            isAr && "flex-row-reverse"
+          )}
+        >
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase bg-gold text-white px-7 py-4 hover:bg-amber-500 transition-colors duration-300"
+          >
+            {h.cta1}
+          </Link>
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase border border-white/50 text-white px-7 py-4 hover:bg-white/10 transition-all duration-300"
+          >
+            {h.cta2}
+          </Link>
+        </div>
+
+        {/* ── Scroll hint ────────────────────────────────────────────────── */}
+        <div
+          ref={scrollHintRef}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        >
+          <span
+            className={clsx(
+              "font-sans text-xs tracking-[0.3em] uppercase text-white/50",
+              isAr && "font-arabic tracking-normal"
+            )}
+          >
+            {h.scroll}
+          </span>
+          {/* Animated chevron */}
+          <svg
+            viewBox="0 0 16 16"
+            className="w-4 h-4 text-white/40 animate-bounce"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            aria-hidden="true"
+          >
+            <path d="M3 6l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+
+        {/* ── Loading progress bar (disappears when fully loaded) ─────────── */}
+        {loadPct < 100 && (
+          <div
+            className="absolute bottom-0 left-0 h-0.5 bg-gold transition-[width] duration-150"
+            style={{ width: `${loadPct}%` }}
+            aria-hidden="true"
+          />
+        )}
+      </div>
+    </section>
+  );
+}
