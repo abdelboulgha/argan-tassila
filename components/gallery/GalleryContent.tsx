@@ -135,7 +135,7 @@ export default function GalleryContent() {
         dark={false}
       />
 
-      {/* ── Filter bar — minimal underline style ── */}
+      {/* ── Filter bar ── */}
       <div className="sticky top-20 z-30 bg-white/95 backdrop-blur-sm border-b border-cream-dark">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className={clsx("flex items-stretch gap-0 overflow-x-auto", isAr && "flex-row-reverse")}>
@@ -150,15 +150,15 @@ export default function GalleryContent() {
                   key={cat.id}
                   onClick={() => handleCategory(cat.id)}
                   className={clsx(
-                    "relative flex-shrink-0 flex flex-col items-center justify-center gap-0.5 px-5 py-3.5 transition-colors duration-200",
-                    isActive ? "text-green" : "text-muted/40 hover:text-muted/70",
+                    "relative flex-shrink-0 flex flex-col items-center justify-center gap-1 px-8 md:px-12 py-5 transition-colors duration-200",
+                    isActive ? "text-green" : "text-muted/35 hover:text-muted/65",
                     isAr && "font-arabic"
                   )}
                 >
-                  <span className={clsx("font-sans text-[10px] tracking-widest uppercase", isAr && "text-xs tracking-normal")}>
+                  <span className={clsx("font-sans text-sm md:text-base tracking-widest uppercase font-medium", isAr && "tracking-normal")}>
                     {cat.label}
                   </span>
-                  <span className="font-sans text-[8px] text-gold/70">{String(count).padStart(2, "0")}</span>
+                  <span className="font-sans text-xs text-gold/70">{String(count).padStart(2, "0")}</span>
                   {isActive && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold" />}
                 </button>
               );
