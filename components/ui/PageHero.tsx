@@ -1,22 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { clsx } from "clsx";
 import { useLanguage } from "@/lib/i18n";
 
-interface BreadcrumbItem {
-  label: string;
-  href?: string;
-}
-
 interface PageHeroProps {
   label: string;
   title: string;
   subtitle?: string;
-  breadcrumbs?: BreadcrumbItem[];
   image?: string;
   imageAlt?: string;
   dark?: boolean;
@@ -26,7 +19,6 @@ export default function PageHero({
   label,
   title,
   subtitle,
-  breadcrumbs,
   image,
   imageAlt = "",
   dark = false,
@@ -35,26 +27,34 @@ export default function PageHero({
   const isAr = lang === "ar";
   const ref = useRef<HTMLDivElement>(null);
 
+  // Use last word of label as large watermark
+  const watermarkWord = label.split(" ").pop() ?? label;
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".page-hero-content > *",
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: "power3.out", delay: 0.2 }
+        { opacity: 0, y: 32 },
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.9, ease: "power3.out", delay: 0.15 }
+      );
+      gsap.fromTo(
+        ".hero-watermark",
+        { opacity: 0, x: isAr ? 30 : -30 },
+        { opacity: 1, x: 0, duration: 1.3, ease: "power2.out", delay: 0.05 }
       );
     }, ref);
     return () => ctx.revert();
-  }, []);
+  }, [isAr]);
 
   return (
     <div
       ref={ref}
       className={clsx(
-        "relative flex items-end pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden",
+        "relative flex items-end pt-36 pb-20 md:pt-44 md:pb-24 overflow-hidden",
         dark ? "bg-green" : "bg-cream"
       )}
     >
-      {/* Background image */}
+      {/* Background photo */}
       {image && (
         <>
           <Image
@@ -65,87 +65,82 @@ export default function PageHero({
             priority
             sizes="100vw"
           />
-          <div className={clsx(
-            "absolute inset-0",
-            dark ? "bg-green/80" : "bg-cream/80"
-          )} />
+          <div className={clsx("absolute inset-0", dark ? "bg-green/80" : "bg-cream/80")} />
         </>
       )}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full">
-        <div
-          className={clsx(
-            "page-hero-content",
-            isAr && "text-right"
-          )}
-        >
-          {/* Breadcrumb */}
-          {breadcrumbs && (
-            <nav aria-label="Fil d'Ariane" className={clsx("flex items-center gap-2 mb-6", isAr && "flex-row-reverse justify-end")}>
-              {breadcrumbs.map((crumb, i) => (
-                <span key={i} className={clsx("flex items-center gap-2", isAr && "flex-row-reverse")}>
-                  {crumb.href ? (
-                    <Link
-                      href={crumb.href}
-                      className={clsx(
-                        "font-sans text-xs tracking-widest uppercase hover:text-gold transition-colors",
-                        dark ? "text-cream/50" : "text-muted"
-                      )}
-                    >
-                      {crumb.label}
-                    </Link>
-                  ) : (
-                    <span className={clsx("font-sans text-xs tracking-widest uppercase", dark ? "text-cream/80" : "text-green")}>
-                      {crumb.label}
-                    </span>
-                  )}
-                  {i < breadcrumbs.length - 1 && (
-                    <span className={clsx("text-xs", dark ? "text-cream/30" : "text-muted/40")}>
-                      {isAr ? "←" : "→"}
-                    </span>
-                  )}
-                </span>
-              ))}
-            </nav>
-          )}
+      {/* Decorative vertical grid lines */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {[25, 50, 75].map((pct) => (
+          <div
+            key={pct}
+            className={clsx("absolute top-0 bottom-0 w-px", dark ? "bg-white/[0.04]" : "bg-green/[0.06]")}
+            style={{ left: `${pct}%` }}
+          />
+        ))}
 
-          {/* Label */}
-          <p
-            className={clsx(
-              "font-sans text-xs tracking-widest uppercase text-gold mb-4",
+        {/* Gold corner bracket */}
+        <div className={clsx(
+          "absolute top-8 md:top-12 w-16 h-16 border-t border-gold/30",
+          isAr ? "right-8 md:right-14 border-r" : "left-8 md:left-14 border-l"
+        )} />
+
+        {/* Bottom gold rule */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gold/20" />
+      </div>
+
+      {/* Giant watermark word */}
+      <div
+        className={clsx(
+          "hero-watermark absolute bottom-0 select-none pointer-events-none font-display font-black leading-none",
+          "text-[22vw]",
+          dark ? "text-white/[0.04]" : "text-green/[0.055]",
+          isAr ? "left-0" : "right-0",
+          isAr && "font-arabic"
+        )}
+      >
+        {watermarkWord}
+      </div>
+
+      {/* Page content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full">
+        <div className={clsx("page-hero-content", isAr && "text-right")}>
+
+          {/* Gold tag + line */}
+          <div className={clsx("flex items-center gap-3 mb-5", isAr && "flex-row-reverse justify-end")}>
+            <div className="w-8 h-px bg-gold flex-shrink-0" />
+            <p className={clsx(
+              "font-sans text-[10px] tracking-[0.3em] uppercase text-gold",
               isAr && "font-arabic text-sm tracking-normal"
-            )}
-          >
-            {label}
-          </p>
+            )}>
+              {label}
+            </p>
+          </div>
 
           {/* Title */}
-          <h1
-            className={clsx(
-              "font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight",
-              dark ? "text-cream" : "text-green",
-              isAr && "font-arabic"
-            )}
-          >
+          <h1 className={clsx(
+            "font-display font-bold leading-[1.04]",
+            "text-5xl md:text-6xl lg:text-7xl",
+            dark ? "text-cream" : "text-green",
+            isAr && "font-arabic"
+          )}>
             {title}
           </h1>
 
           {/* Subtitle */}
           {subtitle && (
-            <p
-              className={clsx(
-                "font-sans text-base md:text-lg leading-relaxed mt-4 max-w-xl",
-                dark ? "text-cream/70" : "text-muted",
-                isAr && "font-arabic"
-              )}
-            >
+            <p className={clsx(
+              "mt-5 font-sans text-base md:text-lg leading-relaxed max-w-xl",
+              dark ? "text-cream/65" : "text-muted",
+              isAr && "font-arabic"
+            )}>
               {subtitle}
             </p>
           )}
         </div>
 
-        {/* Gold line */}
-        <div className="mt-10 w-16 h-0.5 bg-gold" />
+        {/* Gold accent line */}
+        <div className={clsx("mt-10 w-12 h-0.5 bg-gold", isAr && "ml-auto mr-0")} />
       </div>
     </div>
   );

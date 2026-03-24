@@ -144,10 +144,7 @@ export default function ProcessContent() {
         label={p.hero.label}
         title={p.hero.title1}
         subtitle={p.hero.title2}
-        breadcrumbs={[
-          { label: lang === "fr" ? "Accueil" : "الرئيسية", href: "/" },
-          { label: p.hero.label },
-        ]}
+
         image={p.hero.image}
         dark
       />

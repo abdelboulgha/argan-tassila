@@ -128,10 +128,6 @@ export default function GalleryContent() {
       <PageHero
         label={g.hero.label}
         title={g.hero.title}
-        breadcrumbs={[
-          { label: lang === "fr" ? "Accueil" : "الرئيسية", href: "/" },
-          { label: g.hero.label },
-        ]}
         dark={false}
       />
 

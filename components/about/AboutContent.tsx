@@ -95,10 +95,7 @@ export default function AboutContent() {
       <PageHero
         label={a.hero.label}
         title={a.hero.title}
-        breadcrumbs={[
-          { label: a.hero.breadcrumb[0], href: "/" },
-          { label: a.hero.breadcrumb[1] },
-        ]}
+
         image="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=1920&q=80"
         dark={false}
       />

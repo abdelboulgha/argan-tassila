@@ -52,10 +52,7 @@ export default function ProductsContent() {
         label={p.hero.label}
         title={p.hero.title}
         subtitle={p.hero.subtitle}
-        breadcrumbs={[
-          { label: lang === "fr" ? "Accueil" : "الرئيسية", href: "/" },
-          { label: p.hero.label },
-        ]}
+
         image={p.hero.image}
         dark={false}
       />

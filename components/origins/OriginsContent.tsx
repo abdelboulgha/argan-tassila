@@ -64,10 +64,7 @@ export default function OriginsContent() {
         label="ORIGINES"
         title={o.hero.title1}
         subtitle={o.hero.title2}
-        breadcrumbs={[
-          { label: lang === "fr" ? "Accueil" : "الرئيسية", href: "/" },
-          { label: lang === "fr" ? "Origines" : "الأصول" },
-        ]}
+
         image={o.hero.image}
         dark
       />
