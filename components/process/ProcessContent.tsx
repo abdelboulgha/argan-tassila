@@ -19,14 +19,14 @@ export default function ProcessContent() {
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      /* ── Intro badge + text ── */
+      /* ── Intro ── */
       gsap.fromTo(".intro-badge",
-        { opacity: 0, y: -16 },
+        { opacity: 0, y: -14 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
           scrollTrigger: { trigger: ".process-intro", start: "top 88%" } }
       );
       gsap.fromTo(".intro-text",
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 28 },
         { opacity: 1, y: 0, duration: 0.9, ease: "power2.out", delay: 0.15,
           scrollTrigger: { trigger: ".process-intro", start: "top 88%" } }
       );
@@ -36,95 +36,103 @@ export default function ProcessContent() {
       const pillarObs = new IntersectionObserver((entries) => {
         if (!entries[0].isIntersecting) return;
         pillarEls.forEach((el) => {
-          const raw = el.dataset.val ?? "0";
-          const num  = parseInt(raw.replace(/\D/g, ""), 10);
+          const raw    = el.dataset.val ?? "0";
+          const num    = parseInt(raw.replace(/\D/g, ""), 10);
           const prefix = raw.startsWith("+") ? "+" : "";
           const suffix = raw.includes("%") ? "%" : "";
-          gsap.fromTo(el,
-            { innerText: "0" },
-            { innerText: num, duration: 1.8, ease: "power2.out", snap: { innerText: 1 },
-              onUpdate() { el.innerText = `${prefix}${Math.round(parseFloat(el.innerText))}${suffix}`; }
+          gsap.fromTo({ val: 0 }, { val: num, duration: 1.8, ease: "power2.out",
+            onUpdate() {
+              el.innerText = `${prefix}${Math.round((this as gsap.TweenVars).targets()[0].val)}${suffix}`;
             }
-          );
-          gsap.fromTo(el.parentElement,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+          });
+          gsap.fromTo(el.closest(".pillar-item"),
+            { opacity: 0, y: 18 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: 0.1 }
           );
         });
         pillarObs.disconnect();
-      }, { threshold: 0.5 });
-      const pillarsEl = document.querySelector(".pillars-row");
-      if (pillarsEl) pillarObs.observe(pillarsEl);
+      }, { threshold: 0.6 });
+      const pillarsSection = document.querySelector(".pillars-row");
+      if (pillarsSection) pillarObs.observe(pillarsSection);
 
-      /* ── Timeline progress line (scrub) ── */
+      /* ── Timeline track scrub ── */
       gsap.fromTo(".timeline-track",
         { scaleY: 0 },
-        { scaleY: 1, ease: "none", transformOrigin: "top center",
+        { scaleY: 1, ease: "none", transformOrigin: "top",
           scrollTrigger: {
-            trigger: ".steps-container",
-            start: "top 60%",
-            end: "bottom 40%",
+            trigger: ".steps-section",
+            start: "top 55%",
+            end:   "bottom 45%",
             scrub: 1,
           }
         }
       );
 
-      /* ── Per-step sequential animation ── */
+      /* ── Per-step animations ── */
       gsap.utils.toArray<HTMLElement>(".process-step").forEach((step) => {
-        const badge   = step.querySelector(".step-badge");
-        const season  = step.querySelector(".step-season");
-        const titleWrap = step.querySelector(".step-title-overflow");
-        const divider = step.querySelector(".step-divider");
-        const paras   = step.querySelectorAll(".step-para");
-        const chips   = step.querySelectorAll(".fact-chip");
-        const note    = step.querySelector(".step-note");
-        const bigNum  = step.querySelector(".step-big-num");
+        const isEven    = step.dataset.even === "true";
+        const dot       = step.querySelector(".step-dot");
+        const connector = step.querySelector(".step-connector");
+        const card      = step.querySelector(".step-card");
+        const paras     = step.querySelectorAll(".step-para");
+        const chips     = step.querySelectorAll(".fact-chip");
+        const note      = step.querySelector(".step-note");
+        const divider   = step.querySelector(".step-divider");
 
         const tl = gsap.timeline({
           scrollTrigger: { trigger: step, start: "top 78%" },
         });
 
-        if (bigNum)
-          tl.fromTo(bigNum,
-            { opacity: 0, scale: 0.85 },
-            { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out" }, 0
+        /* dot pops in */
+        if (dot)
+          tl.fromTo(dot,
+            { scale: 0, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.5)" }, 0
           );
-        if (badge)
-          tl.fromTo(badge,
-            { opacity: 0, x: isAr ? 24 : -24 },
-            { opacity: 1, x: 0, duration: 0.55, ease: "power2.out" }, 0.1
+
+        /* connector draws from center outward */
+        if (connector)
+          tl.fromTo(connector,
+            { scaleX: 0 },
+            { scaleX: 1, duration: 0.4, ease: "power2.inOut",
+              transformOrigin: isEven ? "right" : "left" }, 0.2
           );
-        if (season)
-          tl.fromTo(season,
-            { opacity: 0, y: -10 },
-            { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.25
+
+        /* card slides in from its side */
+        if (card)
+          tl.fromTo(card,
+            { opacity: 0, x: isAr ? (isEven ? -48 : 48) : (isEven ? -48 : 48) },
+            { opacity: 1, x: 0, duration: 0.75, ease: "power3.out" }, 0.3
           );
-        if (titleWrap)
-          tl.fromTo(titleWrap,
-            { clipPath: "inset(100% 0 0 0)" },
-            { clipPath: "inset(0% 0 0 0)", duration: 0.85, ease: "power3.out" }, 0.3
-          );
+
+        /* divider draws */
         if (divider)
           tl.fromTo(divider,
             { scaleX: 0 },
-            { scaleX: 1, duration: 0.7, ease: "power2.inOut",
-              transformOrigin: isAr ? "right" : "left" }, 0.55
+            { scaleX: 1, duration: 0.55, ease: "power2.inOut",
+              transformOrigin: isAr ? "right" : "left" }, 0.65
           );
+
+        /* paragraphs stagger */
         if (paras.length)
           tl.fromTo(Array.from(paras),
-            { opacity: 0, y: 28 },
-            { opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: "power2.out" }, 0.65
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, stagger: 0.1, duration: 0.65, ease: "power2.out" }, 0.75
           );
+
+        /* chips pop */
         if (chips.length)
           tl.fromTo(Array.from(chips),
-            { opacity: 0, scale: 0.8, y: 10 },
-            { opacity: 1, scale: 1, y: 0, stagger: 0.08, duration: 0.45,
-              ease: "back.out(1.7)" }, 0.9
+            { opacity: 0, scale: 0.78, y: 8 },
+            { opacity: 1, scale: 1, y: 0, stagger: 0.07, duration: 0.4,
+              ease: "back.out(1.8)" }, 1.0
           );
+
+        /* note slides */
         if (note)
           tl.fromTo(note,
-            { opacity: 0, x: isAr ? 16 : -16 },
-            { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }, 1.1
+            { opacity: 0, x: isAr ? 14 : -14 },
+            { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, 1.15
           );
       });
 
@@ -137,8 +145,8 @@ export default function ProcessContent() {
 
       /* ── Banner ── */
       gsap.fromTo(".banner-inner > *",
-        { opacity: 0, y: 32 },
-        { opacity: 1, y: 0, stagger: 0.2, duration: 1, ease: "power3.out",
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, stagger: 0.18, duration: 1, ease: "power3.out",
           scrollTrigger: { trigger: ".banner-inner", start: "top 80%" } }
       );
 
@@ -160,11 +168,12 @@ export default function ProcessContent() {
         dark
       />
 
-      {/* ── Intro ── */}
+      {/* ── Intro + Pillars ── */}
       <section className="py-20 bg-cream process-intro">
         <div className="max-w-4xl mx-auto px-6 md:px-10 text-center">
           <span className={clsx(
-            "intro-badge inline-block font-sans text-xs tracking-widest uppercase border border-gold/40 text-gold px-4 py-2 mb-6",
+            "intro-badge inline-block font-sans text-xs tracking-widest uppercase",
+            "border border-gold/40 text-gold px-4 py-2 mb-6",
             isAr && "font-arabic text-sm tracking-normal"
           )}>
             {p.hero.label}
@@ -176,10 +185,9 @@ export default function ProcessContent() {
             {p.intro.text}
           </p>
 
-          {/* Pillars */}
           <div className="pillars-row grid grid-cols-2 md:grid-cols-4 gap-px bg-cream-dark border border-cream-dark">
             {p.pillars.map((pill, i) => (
-              <div key={i} className="bg-cream py-8 px-4 text-center">
+              <div key={i} className="pillar-item bg-cream py-8 px-4 text-center">
                 <p
                   className={clsx("pillar-num font-display text-5xl font-black text-green mb-1", isAr && "font-arabic")}
                   data-val={pill.value}
@@ -196,109 +204,136 @@ export default function ProcessContent() {
         </div>
       </section>
 
-      {/* ── Steps ── */}
-      <section className="bg-white relative steps-container">
+      {/* ── Central Timeline ── */}
+      <section className="steps-section py-16 md:py-24 bg-white relative overflow-hidden">
 
-        {/* Vertical timeline track */}
-        <div className="hidden lg:block absolute left-[200px] top-0 bottom-0 w-px bg-cream-dark" aria-hidden="true">
-          <div className="timeline-track absolute inset-0 bg-gold/50" />
+        {/* Desktop center line */}
+        <div
+          className="hidden lg:block absolute top-0 bottom-0 w-px bg-cream-dark"
+          style={{ left: "50%" }}
+          aria-hidden="true"
+        >
+          <div className="timeline-track absolute inset-0 bg-gold/50 origin-top" />
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 md:px-10">
-          {p.steps.map((step, i) => (
-            <div
-              key={i}
-              className={clsx(
-                "process-step relative grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-20",
-                "py-20 md:py-24",
-                i < p.steps.length - 1 && "border-b border-cream-dark",
-                i % 2 === 0 ? "bg-white" : "bg-cream/30"
-              )}
-            >
-              {/* ── Left col: number + season ── */}
-              <div className={clsx("relative", isAr && "text-right lg:order-last")}>
+        {/* Mobile left line */}
+        <div className="lg:hidden absolute left-7 top-0 bottom-0 w-px bg-gold/20" aria-hidden="true" />
 
-                {/* Huge bg number */}
-                <span
-                  className="step-big-num absolute -top-4 font-display font-black leading-none select-none text-[7rem] text-green/5"
-                  style={{ [isAr ? "right" : "left"]: "-0.1em" }}
-                >
-                  {step.number}
-                </span>
-
-                {/* Visible badge */}
-                <div className={clsx("step-badge flex items-center gap-3 mb-5 relative z-10", isAr && "flex-row-reverse")}>
-                  <span className="font-display text-3xl font-black text-gold leading-none">{step.number}</span>
-                  <div className="flex-1 h-px bg-gold/30" />
-                </div>
-
-                {/* Season */}
-                <p className={clsx(
-                  "step-season font-sans text-[10px] tracking-[0.25em] uppercase text-muted/70 relative z-10",
-                  isAr && "font-arabic text-xs tracking-normal"
+        <div className="max-w-6xl mx-auto px-6 md:px-10 space-y-6 lg:space-y-0">
+          {p.steps.map((step, i) => {
+            const isEven = i % 2 === 0; // even → card on LEFT
+            return (
+              <div
+                key={i}
+                data-even={String(isEven)}
+                className="process-step relative flex items-center py-8 lg:py-14"
+              >
+                {/* ── Card ── */}
+                <div className={clsx(
+                  "w-full pl-14 lg:pl-0 lg:w-[calc(50%-2.5rem)]",
+                  !isEven && "lg:ml-auto"
                 )}>
-                  {step.season}
-                </p>
-
-                {/* Dot on timeline */}
-                <div className="hidden lg:block absolute -right-[0.5rem] top-[3.5rem] w-3 h-3 bg-white border-2 border-gold z-10" />
-              </div>
-
-              {/* ── Right col: content ── */}
-              <div className={clsx(isAr && "text-right")}>
-
-                {/* Title with clip reveal */}
-                <div className="overflow-hidden mb-1">
-                  <h2 className={clsx(
-                    "step-title-overflow font-display text-4xl md:text-5xl font-bold text-green leading-tight",
-                    isAr && "font-arabic"
+                  <div className={clsx(
+                    "step-card bg-white border border-cream-dark p-6 md:p-8",
+                    "hover:border-gold/40 transition-colors duration-300 relative overflow-hidden",
+                    !isAr ? "border-l-[3px] border-l-gold" : "border-r-[3px] border-r-gold"
                   )}>
-                    {step.title}
-                  </h2>
+                    {/* Faded big number */}
+                    <span className={clsx(
+                      "absolute top-0 font-display font-black text-[6rem] leading-none select-none text-green/[0.04]",
+                      isAr ? "left-2" : "right-2"
+                    )}>
+                      {step.number}
+                    </span>
+
+                    {/* Header row */}
+                    <div className={clsx("flex items-start gap-4 mb-4", isAr && "flex-row-reverse")}>
+                      <div className="flex-shrink-0 w-12 h-12 border border-gold/30 bg-gold/5 flex items-center justify-center">
+                        <span className="font-display text-lg font-bold text-gold">{step.number}</span>
+                      </div>
+                      <div className={clsx("flex-1 min-w-0", isAr && "text-right")}>
+                        <p className={clsx(
+                          "font-sans text-[10px] tracking-[0.22em] uppercase text-gold/70 mb-1",
+                          isAr && "font-arabic text-xs tracking-normal"
+                        )}>
+                          {step.season}
+                        </p>
+                        <h2 className={clsx(
+                          "font-display text-2xl md:text-3xl font-bold text-green leading-tight",
+                          isAr && "font-arabic"
+                        )}>
+                          {step.title}
+                        </h2>
+                      </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="step-divider h-px bg-gold/20 mb-6" />
+
+                    {/* Paragraphs */}
+                    {step.paragraphs.map((par, j) => (
+                      <p key={j} className={clsx(
+                        "step-para font-sans text-sm leading-relaxed text-muted mb-3 last:mb-0",
+                        isAr && "font-arabic"
+                      )}>
+                        {par}
+                      </p>
+                    ))}
+
+                    {/* Facts chips */}
+                    {step.facts && step.facts.length > 0 && (
+                      <div className={clsx("flex flex-wrap gap-2 mt-5", isAr && "justify-end")}>
+                        {step.facts.map((fact, k) => (
+                          <span key={k} className={clsx(
+                            "fact-chip inline-flex items-center gap-1.5",
+                            "font-sans text-[9px] tracking-widest uppercase",
+                            "border border-gold/35 text-gold/75 px-2.5 py-1 bg-gold/[0.03]",
+                            isAr && "font-arabic text-[10px] tracking-normal"
+                          )}>
+                            <span className="w-1 h-1 bg-gold/70 rotate-45 inline-block flex-shrink-0" />
+                            {fact}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Note */}
+                    {step.note && (
+                      <p className={clsx(
+                        "step-note mt-5 font-sans text-xs italic text-gold/70",
+                        "border-l-2 border-gold/30 pl-3",
+                        isAr && "border-l-0 border-r-2 pl-0 pr-3 font-arabic"
+                      )}>
+                        {step.note}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
-                {/* Animated divider */}
-                <div className="step-divider h-px bg-gold/40 mb-8 mt-3" />
+                {/* ── Desktop: connector line ── */}
+                <div
+                  className={clsx(
+                    "step-connector hidden lg:block absolute top-1/2 -translate-y-1/2 h-px bg-gold/30",
+                    isEven
+                      ? "left-[calc(50%-2.5rem)] w-10"
+                      : "left-1/2 w-10"
+                  )}
+                />
 
-                {/* Paragraphs */}
-                {step.paragraphs.map((par, j) => (
-                  <p key={j} className={clsx(
-                    "step-para font-sans text-sm leading-relaxed text-muted mb-4",
-                    isAr && "font-arabic"
-                  )}>
-                    {par}
-                  </p>
-                ))}
-
-                {/* Facts chips */}
-                {step.facts && step.facts.length > 0 && (
-                  <div className={clsx("flex flex-wrap gap-2 mt-7", isAr && "justify-end")}>
-                    {step.facts.map((fact, k) => (
-                      <span key={k} className={clsx(
-                        "fact-chip inline-flex items-center gap-1.5 font-sans text-[10px] tracking-wider uppercase",
-                        "border border-gold/40 text-gold/80 px-3 py-1.5 bg-gold/[0.04]",
-                        isAr && "font-arabic text-xs tracking-normal"
-                      )}>
-                        <span className="w-1 h-1 bg-gold/70 rotate-45 inline-block" />
-                        {fact}
-                      </span>
-                    ))}
+                {/* ── Desktop: center dot ── */}
+                <div className="step-dot hidden lg:flex absolute items-center justify-center z-20"
+                  style={{ left: "calc(50% - 12px)" }}
+                >
+                  <div className="w-6 h-6 bg-white border-2 border-gold rotate-45 flex items-center justify-center">
+                    <div className="w-2 h-2 bg-gold/50 rotate-45" />
                   </div>
-                )}
+                </div>
 
-                {/* Note */}
-                {step.note && (
-                  <p className={clsx(
-                    "step-note mt-6 font-sans text-xs italic text-gold/80",
-                    "border-l-2 border-gold/30 pl-4",
-                    isAr && "border-l-0 border-r-2 pl-0 pr-4 font-arabic"
-                  )}>
-                    {step.note}
-                  </p>
-                )}
+                {/* ── Mobile: left dot ── */}
+                <div className="lg:hidden absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-2 border-gold rotate-45 z-10" />
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -351,7 +386,7 @@ export default function ProcessContent() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-green/78" />
+        <div className="absolute inset-0 bg-green/75" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center banner-inner">
           <span className="inline-block font-sans text-[9px] tracking-[0.35em] uppercase border border-gold/40 text-gold px-5 py-2 mb-8">
             {isAr ? "أرگان تاسيلا" : "Argan Tassila"}
