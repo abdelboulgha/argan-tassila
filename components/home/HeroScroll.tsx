@@ -107,8 +107,8 @@ export default function HeroScroll() {
         img.onload = () => {
           loaded++;
           setLoadPct(Math.round((loaded / TOTAL_FRAMES) * 100));
-          // Show first frame as soon as it's ready
-          if (loaded === 1) renderFrame(0);
+          // Show first frame as soon as frame 0 specifically is ready
+          if (i === 0) renderFrame(0);
           // Build GSAP animation only after all frames are loaded
           if (loaded === TOTAL_FRAMES) buildAnimation();
         };
