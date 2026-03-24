@@ -542,15 +542,14 @@ const fr = {
     categories: [
       { id: "all", label: "Tout" },
       { id: "produits", label: "Produits" },
-      { id: "processus", label: "Processus" },
-      { id: "equipe", label: "Equipe" },
+      { id: "shooting", label: "Shooting" },
     ],
     images: [
-      // — Produits
+      // — Photos produits (fond blanc / studio)
       {
         src: "/images/products/pack-trio.webp",
         alt: "Pack trio Argan Tassila",
-        caption: "L'or liquide du Maroc",
+        caption: "La collection complète",
         category: "produits",
       },
       {
@@ -562,7 +561,7 @@ const fr = {
       {
         src: "/images/products/amlou-beldi.webp",
         alt: "Amlou beldi Argan Tassila",
-        caption: "Amlou Beldi",
+        caption: "Amlou Beldi aux amandes",
         category: "produits",
       },
       {
@@ -595,49 +594,48 @@ const fr = {
         caption: "Zemita du Souss",
         category: "produits",
       },
-      // — Processus
+      // — Shooting lifestyle
       {
         src: "/images/products/575625424_18299563345248989_3704629063126356920_n.webp",
-        alt: "Recolte des fruits d'arganier",
-        caption: "La récolte",
-        category: "processus",
+        alt: "Collection de produits Argan Tassila",
+        caption: "La gamme Tassila",
+        category: "shooting",
       },
       {
         src: "/images/products/576529705_18299680633248989_5263939411239459363_n.webp",
-        alt: "Decorticage artisanal a la pierre",
-        caption: "Le décorticage",
-        category: "processus",
+        alt: "Amlou Biscotus Argan Tassila",
+        caption: "Amlou Biscotus",
+        category: "shooting",
       },
       {
         src: "/images/products/579507423_18299507671248989_57519321744149939_n.webp",
-        alt: "Torrefaction des amandes sur feu doux",
-        caption: "La torréfaction",
-        category: "processus",
+        alt: "Amlou Biscotus Argan Tassila aux petales",
+        caption: "Amlou Biscotus aux pétales",
+        category: "shooting",
       },
       {
         src: "/images/products/580064130_18299577946248989_9157425705327260721_n.webp",
-        alt: "Broyage et pressage a froid",
-        caption: "Pressage à froid",
-        category: "processus",
+        alt: "Amlou Crispy Coco Argan Tassila",
+        caption: "Amlou Crispy Coco & noix de coco",
+        category: "shooting",
       },
-      // — Equipe
       {
         src: "/images/products/617512772_18306377353248989_1221937758502659617_n.webp",
-        alt: "Artisanes Argan Tassila au travail",
-        caption: "Artisanes au travail",
-        category: "equipe",
+        alt: "Produits Argan Tassila sous cloche",
+        caption: "Sous cloche, avec soin",
+        category: "shooting",
       },
       {
         src: "/images/products/580836919_18299509252248989_6872773616541936999_n.webp",
-        alt: "Cooperative Argan Tassila",
-        caption: "Notre coopérative",
-        category: "equipe",
+        alt: "Amlou Beldi Argan Tassila aux fleurs",
+        caption: "Amlou Beldi aux fleurs",
+        category: "shooting",
       },
       {
         src: "/images/products/589437996_18301853887248989_2287108038899774739_n.webp",
-        alt: "Savoir-faire Argan Tassila",
-        caption: "Geste millénaire",
-        category: "equipe",
+        alt: "Miel d'herbes artisanal",
+        caption: "Miel d'herbes artisanal",
+        category: "shooting",
       },
     ],
     instagram: {

@@ -533,15 +533,14 @@ const ar: Translations = {
     categories: [
       { id: "all", label: "الكل" },
       { id: "produits", label: "المنتجات" },
-      { id: "processus", label: "الصنع" },
-      { id: "equipe", label: "الفريق" },
+      { id: "shooting", label: "التصوير" },
     ],
     images: [
-      // — المنتجات
+      // — صور المنتجات
       {
         src: "/images/products/pack-trio.webp",
         alt: "طقم ثلاثي أرگان تاسيلا",
-        caption: "الذهب السائل من المغرب",
+        caption: "المجموعة الكاملة",
         category: "produits",
       },
       {
@@ -553,7 +552,7 @@ const ar: Translations = {
       {
         src: "/images/products/amlou-beldi.webp",
         alt: "أملو بلدي أرگان تاسيلا",
-        caption: "أملو بلدي",
+        caption: "أملو بلدي باللوز",
         category: "produits",
       },
       {
@@ -586,49 +585,48 @@ const ar: Translations = {
         caption: "زميتة سوس",
         category: "produits",
       },
-      // — الصنع
+      // — تصوير إبداعي
       {
         src: "/images/products/575625424_18299563345248989_3704629063126356920_n.webp",
-        alt: "جني ثمار شجرة الأرگان",
-        caption: "الجني",
-        category: "processus",
+        alt: "مجموعة منتجات أرگان تاسيلا",
+        caption: "تشكيلة تاسيلا",
+        category: "shooting",
       },
       {
         src: "/images/products/576529705_18299680633248989_5263939411239459363_n.webp",
-        alt: "تكسير نواة الأرگان بالحجر",
-        caption: "التكسير اليدوي",
-        category: "processus",
+        alt: "أملو بيسكوتوس أرگان تاسيلا",
+        caption: "أملو بيسكوتوس",
+        category: "shooting",
       },
       {
         src: "/images/products/579507423_18299507671248989_57519321744149939_n.webp",
-        alt: "تحميص لب الأرگان على نار هادئة",
-        caption: "التحميص",
-        category: "processus",
+        alt: "أملو بيسكوتوس مع البتلات",
+        caption: "أملو بيسكوتوس بين الأزهار",
+        category: "shooting",
       },
       {
         src: "/images/products/580064130_18299577946248989_9157425705327260721_n.webp",
-        alt: "طحن وعصر الأرگان على البارد",
-        caption: "العصر على البارد",
-        category: "processus",
+        alt: "أملو كريسبي كوكو مع جوز الهند",
+        caption: "أملو كريسبي كوكو وجوز الهند",
+        category: "shooting",
       },
-      // — الفريق
       {
         src: "/images/products/617512772_18306377353248989_1221937758502659617_n.webp",
-        alt: "حرفيات أرگان تاسيلا أثناء العمل",
-        caption: "الحرفيات في العمل",
-        category: "equipe",
+        alt: "منتجات أرگان تاسيلا تحت قبة زجاجية",
+        caption: "تحت القبة بعناية",
+        category: "shooting",
       },
       {
         src: "/images/products/580836919_18299509252248989_6872773616541936999_n.webp",
-        alt: "تعاونية أرگان تاسيلا",
-        caption: "تعاونيتنا",
-        category: "equipe",
+        alt: "أملو بلدي مع الأزهار",
+        caption: "أملو بلدي بين الأزهار",
+        category: "shooting",
       },
       {
         src: "/images/products/589437996_18301853887248989_2287108038899774739_n.webp",
-        alt: "الحرفية أرگان تاسيلا",
-        caption: "حركة عمرها ألف عام",
-        category: "equipe",
+        alt: "عسل الأعشاب الطبيعي",
+        caption: "عسل الأعشاب الطبيعي",
+        category: "shooting",
       },
     ],
     instagram: {
