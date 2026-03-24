@@ -9,7 +9,7 @@ import { buildWhatsAppURL } from "@/lib/whatsapp";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-const PHONE = "+212 660 308 681";
+const PHONE = "+212 637 817 229";
 const EMAIL = "argantassila@gmail.com";
 
 export default function ContactContent() {
@@ -113,7 +113,7 @@ export default function ContactContent() {
               {c.info.whatsappBtn}
             </a>
             <a
-              href="tel:+212660308681"
+              href="tel:+212637817229"
               className={clsx(
                 "inline-flex items-center gap-3 font-sans text-xs font-semibold tracking-widest uppercase border border-cream/30 text-cream px-8 py-4 btn-slide btn-fill-white-soft hover:border-cream",
                 isAr && "flex-row-reverse"
@@ -130,7 +130,7 @@ export default function ContactContent() {
       <section className="bg-cream-dark/30 py-14">
         <div className="cards-row max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-          <a href="tel:+212660308681"
+          <a href="tel:+212637817229"
             className={clsx("info-card group bg-white border border-cream-dark p-7 flex flex-col gap-4 hover:border-green hover:shadow-sm transition-all duration-300", isAr && "items-end text-right")}>
             <div className="w-11 h-11 bg-green/8 border border-green/20 flex items-center justify-center text-green group-hover:bg-green group-hover:text-cream transition-colors duration-300">
               <PhoneIcon />

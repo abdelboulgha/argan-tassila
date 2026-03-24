@@ -32,7 +32,7 @@ const fr = {
       { label: "Selou & Zemita", href: "/products" },
     ],
     address: "Aïdir, Agadir-Idaoutanane, Souss-Massa, Maroc",
-    phone: "+212 660 308 681",
+    phone: "+212 637 817 229",
     email: "argantassila@gmail.com",
     instagram: "@argan_tassila",
     copyright: "2024 Argan Tassila Cooperative. Tous droits reserves.",

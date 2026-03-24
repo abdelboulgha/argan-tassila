@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = "212660308681";
+export const WHATSAPP_NUMBER = "212637817229";
 
 export function buildWhatsAppURL(
   productName?: string,

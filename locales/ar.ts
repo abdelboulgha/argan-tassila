@@ -34,7 +34,7 @@ const ar: Translations = {
       { label: "سلو وزميطة", href: "/products" },
     ],
     address: "أيدير، أگادير إيداوتنان، سوس-ماسة، المغرب",
-    phone: "+212 660 308 681",
+    phone: "+212 637 817 229",
     email: "argantassila@gmail.com",
     instagram: "@argan_tassila",
     copyright: "2024 تعاونية أرگان تاسيلا. جميع الحقوق محفوظة.",
