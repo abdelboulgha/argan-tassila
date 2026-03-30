@@ -10,8 +10,6 @@ const ar: Translations = {
       { label: "الرئيسية", href: "/" },
       { label: "من نحن", href: "/about" },
       { label: "المنتجات", href: "/products" },
-      { label: "الأصول", href: "/origins" },
-      { label: "طريقة الصنع", href: "/process" },
       { label: "المعرض", href: "/gallery" },
       { label: "اتصل بنا", href: "/contact" },
     ],

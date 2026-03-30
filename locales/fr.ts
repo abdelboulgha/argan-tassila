@@ -8,8 +8,6 @@ const fr = {
       { label: "Accueil", href: "/" },
       { label: "A Propos", href: "/about" },
       { label: "Produits", href: "/products" },
-      { label: "Origines", href: "/origins" },
-      { label: "Processus", href: "/process" },
       { label: "Galerie", href: "/gallery" },
       { label: "Contact", href: "/contact" },
     ],
