@@ -308,7 +308,7 @@ export default function HeroScroll() {
         <div
           ref={ctaRef}
           className={clsx(
-            "absolute bottom-20 px-6 w-full z-10 flex flex-col md:flex-row justify-center items-center gap-4 opacity-0",
+            "absolute bottom-16 md:bottom-20 px-6 w-full z-10 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-4 opacity-0",
             isAr && "md:flex-row-reverse"
           )}
         >

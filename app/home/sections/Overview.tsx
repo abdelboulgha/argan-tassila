@@ -113,11 +113,11 @@ export default function Overview() {
             </p>
 
             {/* Tight Stats Strip */}
-            <div className={clsx("flex flex-wrap gap-x-8 gap-y-4 mb-8 pb-8 border-b border-cream-dark", isAr && "justify-end")}>
+            <div className={clsx("grid grid-cols-4 gap-2 sm:gap-4 mb-8 pb-8 border-b border-cream-dark", isAr && "text-right")}>
               {o.stats.map((stat: any, i: number) => (
                 <div key={i} className={clsx("flex flex-col", isAr ? "items-end" : "items-start")}>
-                  <strong className="font-display text-2xl text-green mb-1">{stat.value}</strong>
-                  <span className={clsx("font-sans text-[10px] uppercase tracking-wider text-muted", isAr && "font-arabic tracking-normal")} >
+                  <strong className="font-display text-lg sm:text-2xl text-green mb-1">{stat.value}</strong>
+                  <span className={clsx("font-sans text-[7px] sm:text-[9px] uppercase tracking-widest text-muted", isAr && "font-arabic tracking-normal")} >
                     {stat.label}
                   </span>
                 </div>
