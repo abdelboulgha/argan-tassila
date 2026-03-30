@@ -10,34 +10,34 @@ import Ecology from "@/app/origins/sections/Ecology";
 import Intro from "@/app/process/sections/Intro";
 import Timeline from "@/app/process/sections/Timeline";
 import Engagements from "@/app/process/sections/Engagements";
-import SectionMark from "@/components/ui/SectionMark";
+import SectionTitle from "@/components/ui/SectionTitle";
 
 export default function HomePage() {
   return (
     <>
       <HeroScroll />
 
-      <SectionMark number="01" labelFr="Notre Histoire" labelAr="قصتنا" />
+      <SectionTitle number="01" titleFr="Notre Histoire" titleAr="قصتنا" background="cream" />
       <BrandStatement />
       <StoryTeaser />
 
-      <SectionMark number="02" labelFr="Notre Terroir" labelAr="أرضنا" dark />
+      <SectionTitle number="02" titleFr="Notre Terroir" titleAr="أرضنا" background="cream" />
       <Region />
       <Panels />
       <Ecology />
       <Unesco />
 
-      <SectionMark
+      <SectionTitle
         number="03"
-        labelFr="Notre Processus"
-        labelAr="عمليتنا"
-        dark
+        titleFr="Notre Processus"
+        titleAr="عمليتنا"
+        background="cream"
       />
       <Intro />
       <Timeline />
       <Engagements />
 
-      <SectionMark number="04" labelFr="Nos Produits" labelAr="منتجاتنا" />
+      <SectionTitle number="04" titleFr="Nos Produits" titleAr="منتجاتنا" background="white" />
       <FeaturedProducts />
 
       <WhatsAppBanner />
