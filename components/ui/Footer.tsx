@@ -27,13 +27,13 @@ export default function Footer() {
               className={clsx("flex items-center gap-3", isAr && "flex-row-reverse")}
               aria-label="Argan Tassila"
             >
-              <div className="relative w-24 h-24 flex-shrink-0">
+              <div className="relative w-14 h-14 flex-shrink-0">
                 <Image
                   src="/logo.png"
                   alt="Argan Tassila"
                   fill
                   className="object-contain"
-                  sizes="96px"
+                  sizes="56px"
                 />
               </div>
               <div className={clsx(isAr && "text-right")}>
@@ -92,11 +92,10 @@ export default function Footer() {
                 key={link.href}
                 href={link.href}
                 className={clsx(
-                  "group font-sans text-sm text-cream/75 hover:text-cream transition-colors duration-200 py-1 w-fit flex items-center gap-2",
-                  isAr && "font-arabic flex-row-reverse"
+                  "group font-sans text-sm text-cream/75 hover:text-gold transition-colors duration-200 py-1 w-fit",
+                  isAr && "font-arabic text-right"
                 )}
               >
-                <span className="w-0 h-px bg-gold group-hover:w-3 transition-all duration-300" />
                 {link.label}
               </Link>
             ))}
@@ -115,11 +114,10 @@ export default function Footer() {
                 key={link.label}
                 href={link.href}
                 className={clsx(
-                  "group font-sans text-sm text-cream/75 hover:text-cream transition-colors duration-200 py-1 w-fit flex items-center gap-2",
-                  isAr && "font-arabic flex-row-reverse"
+                  "group font-sans text-sm text-cream/75 hover:text-gold transition-colors duration-200 py-1 w-fit",
+                  isAr && "font-arabic text-right"
                 )}
               >
-                <span className="w-0 h-px bg-gold group-hover:w-3 transition-all duration-300" />
                 {link.label}
               </Link>
             ))}
