@@ -65,11 +65,11 @@ export default function BrandStatement() {
             <div
               key={i}
               className={clsx(
-                "statement-pillar opacity-0 flex flex-col",
-                isAr ? "items-end" : "items-start"
+                "statement-pillar opacity-0 flex flex-col items-center text-center",
               )}
             >
-              <div className={clsx("flex items-center gap-4 mb-4", isAr && "flex-row-reverse")}>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-8 h-px bg-gold/40" />
                 <span className="font-sans text-xs text-gold tracking-widest">0{i + 1}</span>
                 <div className="w-8 h-px bg-gold/40" />
               </div>
