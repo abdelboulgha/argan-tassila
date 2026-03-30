@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { clsx } from "clsx";
@@ -8,216 +9,258 @@ import { useLanguage } from "@/lib/i18n";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-function StepCard({
-  step,
-  isAr,
-}: {
-  step: {
-    number: string;
-    title: string;
-    season: string;
-    paragraphs: string[];
-    facts?: string[];
-    note?: string;
-  };
-  isAr: boolean;
-}) {
-  return (
-    <div className={clsx(
-      "step-card w-full max-w-lg bg-white border border-cream-dark p-6 md:p-8",
-      "hover:border-gold/40 transition-colors duration-300 relative overflow-hidden",
-      !isAr ? "border-l-[3px] border-l-gold" : "border-r-[3px] border-r-gold"
-    )}>
-      <span className={clsx(
-        "absolute -top-2 font-display font-black text-[5.5rem] leading-none select-none text-green/[0.04]",
-        isAr ? "left-1" : "right-1"
-      )}>
-        {step.number}
-      </span>
+function TimelineInner() {
+  const { t, lang } = useLanguage();
+  const isAr = lang === "ar";
+  const p = t.process;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
 
-      <div className={clsx("flex items-start gap-4 mb-5", isAr && "flex-row-reverse")}>
-        <div className="flex-shrink-0 w-11 h-11 border border-gold/30 bg-gold/5 flex items-center justify-center">
-          <span className="font-display text-base font-bold text-gold">{step.number}</span>
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    // Desktop sticky scroll logic
+    mm.add("(min-width: 1024px)", () => {
+      const texts = gsap.utils.toArray<HTMLElement>(".timeline-step-text");
+
+      function activateImage(index: number) {
+        imagesRef.current.forEach((img, i) => {
+          if (!img) return;
+          if (i === index) {
+            gsap.to(img, { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out", overwrite: "auto" });
+          } else {
+            gsap.to(img, { opacity: 0, scale: 1.05, duration: 0.8, ease: "power2.out", overwrite: "auto" });
+          }
+        });
+
+        texts.forEach((text, i) => {
+          if (i === index) {
+            gsap.to(text, { opacity: 1, duration: 0.5 });
+          } else {
+            gsap.to(text, { opacity: 0.2, duration: 0.5 });
+          }
+        });
+      }
+
+      texts.forEach((text, i) => {
+        ScrollTrigger.create({
+          trigger: text,
+          start: "top 55%",
+          end: "bottom 55%",
+          onEnter: () => activateImage(i),
+          onEnterBack: () => activateImage(i),
+        });
+      });
+
+      // Init the first step immediately
+      activateImage(0);
+    });
+
+    // Mobile logic
+    mm.add("(max-width: 1023px)", () => {
+      const mobSteps = gsap.utils.toArray<HTMLElement>(".mobile-step");
+      mobSteps.forEach((step) => {
+        gsap.fromTo(step, 
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8, scrollTrigger: { trigger: step, start: "top 80%" } }
+        );
+      });
+    });
+
+    return () => mm.revert();
+  }, [isAr]);
+
+  return (
+    <section ref={containerRef} className="bg-white relative">
+      {/* DESKTOP LAYOUT */}
+      <div className={clsx("hidden lg:flex w-full", isAr && "flex-row-reverse")}>
+        {/* Sticky Images Side */}
+        <div className="w-1/2 h-screen sticky top-0 overflow-hidden bg-cream-dark">
+          {p.steps.map((step, i) => (
+            <div 
+              key={`img-desk-${i}`}
+              ref={(el) => { imagesRef.current[i] = el; }}
+              className="absolute inset-0 opacity-0 scale-105 will-change-transform"
+            >
+              <Image
+                src={step.image}
+                alt={step.imageAlt}
+                fill
+                className="object-cover"
+                sizes="50vw"
+                priority={i === 0}
+              />
+              <div className="absolute inset-0 bg-green/10 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-gradient-to-t from-green/80 via-transparent to-transparent opacity-80" />
+              
+              <div className={clsx(
+                "absolute bottom-12 text-white font-display leading-none",
+                isAr ? "right-12 text-right" : "left-12"
+              )}>
+                <span className="text-[10rem] xl:text-[14rem] font-bold opacity-15">{step.number}</span>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className={clsx("flex-1 min-w-0", isAr && "text-right")}>
-          <p className={clsx(
-            "font-sans text-[10px] tracking-[0.22em] uppercase text-gold/70 mb-0.5",
-            isAr && "font-arabic text-xs tracking-normal"
-          )}>
-            {step.season}
-          </p>
-          <h2 className={clsx(
-            "font-display text-2xl md:text-[1.7rem] font-bold text-green leading-tight",
-            isAr && "font-arabic"
-          )}>
-            {step.title}
-          </h2>
+
+        {/* Scrolling Text Side */}
+        <div className="w-1/2 py-[40vh] px-12 xl:px-24 bg-white relative">
+          {p.steps.map((step, i) => (
+            <div 
+              key={`text-desk-${i}`}
+              className={clsx(
+                "timeline-step-text min-h-screen flex flex-col justify-center opacity-20 transition-opacity duration-300",
+                isAr ? "items-end text-right" : "items-start text-left"
+              )}
+            >
+              <div className={clsx("flex items-center gap-4 mb-8", isAr && "flex-row-reverse")}>
+                <span className="font-display text-3xl font-bold text-gold">{step.number}</span>
+                <div className="w-16 h-px bg-gold/50" />
+                <span className={clsx(
+                  "font-sans text-[10px] tracking-[0.3em] uppercase text-gold pt-1",
+                  isAr && "font-arabic tracking-normal text-xs"
+                )}>
+                  {step.season}
+                </span>
+              </div>
+              
+              <h3 className={clsx(
+                "font-display text-4xl xl:text-5xl font-bold text-green mb-10 leading-[1.15]",
+                isAr && "font-arabic"
+              )}>
+                {step.title}
+              </h3>
+
+              <div className="space-y-6 mb-10">
+                {step.paragraphs.map((par, j) => (
+                  <p key={`p-${i}-${j}`} className={clsx(
+                    "font-sans text-base leading-relaxed text-muted/90",
+                    isAr && "font-arabic"
+                  )}>
+                    {par}
+                  </p>
+                ))}
+              </div>
+
+              {step.facts && step.facts.length > 0 && (
+                <div className={clsx("flex flex-wrap gap-3 mb-10", isAr && "justify-end")}>
+                  {step.facts.map((fact, k) => (
+                    <span key={`f-${i}-${k}`} className={clsx(
+                      "inline-flex items-center gap-2 border border-gold/30 bg-gold/5 px-3.5 py-2",
+                      "font-sans text-[10px] tracking-widest uppercase text-gold",
+                      isAr && "font-arabic tracking-normal text-xs"
+                    )}>
+                      <span className="w-1.5 h-1.5 bg-gold/80 rotate-45" />
+                      {fact}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {step.note && (
+                <div className={clsx(
+                  "p-6 bg-cream border border-cream-dark",
+                  isAr ? "border-r-2 border-r-gold" : "border-l-2 border-l-gold"
+                )}>
+                  <p className={clsx(
+                    "font-sans text-sm italic text-green/90 leading-relaxed",
+                    isAr && "font-arabic"
+                  )}>
+                    {step.note}
+                  </p>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="step-divider h-px bg-gold/20 mb-6" />
+      {/* MOBILE LAYOUT */}
+      <div className="lg:hidden flex flex-col bg-cream-dark/20">
+        {p.steps.map((step, i) => (
+          <div key={`mob-${i}`} className="mobile-step w-full bg-white mb-4 last:mb-0 relative border-b border-cream-dark">
+            <div className="relative h-[65vh] w-full">
+              <Image
+                src={step.image}
+                alt={step.imageAlt}
+                fill
+                className="object-cover"
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-green/10 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-gradient-to-t from-green/95 via-green/30 to-transparent" />
+              
+              <div className={clsx(
+                "absolute bottom-0 w-full p-8",
+                isAr ? "text-right" : "text-left"
+              )}>
+                <div className={clsx("flex items-center gap-3 mb-4", isAr && "flex-row-reverse")}>
+                  <span className="font-display text-4xl font-bold text-gold">{step.number}</span>
+                  <div className="flex-1 h-px bg-gold/40" />
+                </div>
+                <h3 className={clsx(
+                  "font-display text-4xl font-bold text-white mb-2",
+                  isAr && "font-arabic"
+                )}>
+                  {step.title}
+                </h3>
+                <span className={clsx(
+                  "font-sans text-[10px] tracking-[0.2em] uppercase text-white/70 block",
+                  isAr && "font-arabic tracking-normal text-xs"
+                )}>
+                  {step.season}
+                </span>
+              </div>
+            </div>
+            
+            <div className={clsx("p-8 md:p-12", isAr ? "text-right" : "text-left")}>
+              <div className="space-y-5 mb-8">
+                {step.paragraphs.map((par, j) => (
+                  <p key={`mp-${i}-${j}`} className={clsx(
+                    "font-sans text-base leading-relaxed text-muted",
+                    isAr && "font-arabic"
+                  )}>
+                    {par}
+                  </p>
+                ))}
+              </div>
 
-      {step.paragraphs.map((par, j) => (
-        <p key={j} className={clsx(
-          "step-para font-sans text-sm leading-relaxed text-muted mb-3 last:mb-0",
-          isAr && "font-arabic"
-        )}>
-          {par}
-        </p>
-      ))}
+              {step.facts && step.facts.length > 0 && (
+                <div className={clsx("flex flex-wrap gap-2.5 mb-8", isAr && "justify-end")}>
+                  {step.facts.map((fact, k) => (
+                    <span key={`mf-${i}-${k}`} className={clsx(
+                      "inline-flex items-center gap-2 border border-gold/30 bg-gold/5 px-3 py-1.5",
+                      "font-sans text-[9px] tracking-widest uppercase text-gold",
+                      isAr && "font-arabic tracking-normal text-[10px]"
+                    )}>
+                      <span className="w-1 h-1 bg-gold rotate-45 flex-shrink-0" />
+                      {fact}
+                    </span>
+                  ))}
+                </div>
+              )}
 
-      {step.facts && step.facts.length > 0 && (
-        <div className={clsx("flex flex-wrap gap-2 mt-5", isAr && "justify-end")}>
-          {step.facts.map((fact, k) => (
-            <span key={k} className={clsx(
-              "fact-chip inline-flex items-center gap-1.5",
-              "font-sans text-[9px] tracking-widest uppercase",
-              "border border-gold/35 text-gold/75 px-2.5 py-1 bg-gold/[0.03]",
-              isAr && "font-arabic text-[10px] tracking-normal"
-            )}>
-              <span className="w-1 h-1 bg-gold/70 rotate-45 inline-block flex-shrink-0" />
-              {fact}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {step.note && (
-        <p className={clsx(
-          "step-note mt-5 font-sans text-xs italic text-gold/70",
-          "border-l-2 border-gold/30 pl-3",
-          isAr && "border-l-0 border-r-2 pl-0 pr-3 font-arabic"
-        )}>
-          {step.note}
-        </p>
-      )}
-    </div>
+              {step.note && (
+                <div className={clsx(
+                  "p-5 bg-cream border border-cream-dark",
+                  isAr ? "border-r-2 border-r-gold" : "border-l-2 border-l-gold"
+                )}>
+                  <p className={clsx(
+                    "font-sans text-sm italic text-green/90",
+                    isAr && "font-arabic"
+                  )}>
+                    {step.note}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
 export default function Timeline() {
-  const { t, lang } = useLanguage();
-  const isAr = lang === "ar";
-  const p = t.process;
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(".timeline-track",
-        { scaleY: 0 },
-        { scaleY: 1, ease: "none", transformOrigin: "top",
-          scrollTrigger: {
-            trigger: ".steps-section",
-            start: "top 55%", end: "bottom 45%",
-            scrub: 1,
-          }
-        }
-      );
-
-      gsap.utils.toArray<HTMLElement>(".process-step").forEach((step) => {
-        const cardOnLeft = step.dataset.left === "true";
-        const dot      = step.querySelector(".step-dot");
-        const card     = step.querySelector(".step-card");
-        const divider  = step.querySelector(".step-divider");
-        const paras    = step.querySelectorAll(".step-para");
-        const chips    = step.querySelectorAll(".fact-chip");
-        const note     = step.querySelector(".step-note");
-
-        const tl = gsap.timeline({
-          scrollTrigger: { trigger: step, start: "top 80%" },
-        });
-
-        if (dot)
-          tl.fromTo(dot,
-            { scale: 0, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.5)" }, 0
-          );
-
-        if (card)
-          tl.fromTo(card,
-            { opacity: 0, x: cardOnLeft ? -52 : 52 },
-            { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" }, 0.15
-          );
-
-        if (divider)
-          tl.fromTo(divider,
-            { scaleX: 0 },
-            { scaleX: 1, duration: 0.55, ease: "power2.inOut",
-              transformOrigin: isAr ? "right" : "left" }, 0.6
-          );
-
-        if (paras.length)
-          tl.fromTo(Array.from(paras),
-            { opacity: 0, y: 22 },
-            { opacity: 1, y: 0, stagger: 0.1, duration: 0.65, ease: "power2.out" }, 0.7
-          );
-
-        if (chips.length)
-          tl.fromTo(Array.from(chips),
-            { opacity: 0, scale: 0.78, y: 8 },
-            { opacity: 1, scale: 1, y: 0, stagger: 0.07, duration: 0.4,
-              ease: "back.out(1.8)" }, 1.0
-          );
-
-        if (note)
-          tl.fromTo(note,
-            { opacity: 0, x: cardOnLeft ? -14 : 14 },
-            { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" }, 1.2
-          );
-      });
-    }, ref);
-    return () => ctx.revert();
-  }, [isAr]);
-
-  return (
-    <section ref={ref} className="steps-section py-16 md:py-20 bg-white relative overflow-hidden">
-      <div
-        className="hidden lg:block absolute top-0 bottom-0 w-px bg-cream-dark"
-        style={{ left: "50%" }}
-        aria-hidden="true"
-      >
-        <div className="timeline-track absolute inset-0 bg-gold/50 origin-top" />
-      </div>
-
-      <div className="lg:hidden absolute left-7 top-0 bottom-0 w-px bg-gold/20" aria-hidden="true" />
-
-      <div className="max-w-6xl mx-auto px-4 md:px-8">
-        {p.steps.map((step, i) => {
-          const cardOnLeft = isAr ? i % 2 !== 0 : i % 2 === 0;
-
-          return (
-            <div
-              key={i}
-              data-left={String(cardOnLeft)}
-              className={clsx(
-                "process-step relative py-10 lg:py-16",
-                i < p.steps.length - 1 && "mb-0"
-              )}
-            >
-              <div className="lg:hidden pl-14 relative">
-                <div className="absolute left-3.5 top-7 w-4 h-4 bg-white border-2 border-gold rotate-45 z-10 step-dot" />
-                <StepCard step={step} isAr={isAr} />
-              </div>
-
-              <div className="hidden lg:grid lg:grid-cols-[1fr_72px_1fr] items-center gap-0">
-                <div className="flex justify-end pr-8">
-                  {cardOnLeft && <StepCard step={step} isAr={isAr} />}
-                </div>
-
-                <div className="flex items-center justify-center relative z-10">
-                  <div className="step-dot w-6 h-6 bg-white border-2 border-gold rotate-45 flex items-center justify-center">
-                    <div className="w-2 h-2 bg-gold/60 rotate-45" />
-                  </div>
-                </div>
-
-                <div className="flex justify-start pl-8">
-                  {!cardOnLeft && <StepCard step={step} isAr={isAr} />}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
+  return <TimelineInner />;
 }
