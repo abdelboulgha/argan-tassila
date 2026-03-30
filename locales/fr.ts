@@ -464,7 +464,7 @@ const fr = {
           "Ce geste patient garantit une maturité optimale et préserve l'arganier, espèce protégée classée par l'UNESCO dans la Réserve de Biosphère d'Arganeraie.",
           "La période de récolte est un moment de mobilisation collective où savoir-faire et solidarité se transmettent de mère en fille depuis des générations.",
         ],
-        image: "/images/products/575625424_18299563345248989_3704629063126356920_n.webp",
+        image: "/images/process/harvest.png",
         imageAlt: "Récolte des fruits d'arganier",
       },
       {
@@ -478,7 +478,7 @@ const fr = {
           "Vient ensuite le décorticage : une technique ancestrale où chaque noix est fendue entre deux pierres plates avec une précision remarquable, sans jamais écraser les précieuses amandes.",
           "Les coques récupérées sont réutilisées comme combustible pour le foyer — une philosophie zéro déchet inscrite dans les traditions de la coopérative.",
         ],
-        image: "/images/products/576529705_18299680633248989_5263939411239459363_n.webp",
+        image: "/images/process/cracking.png",
         imageAlt: "Décorticage artisanal des noix d'argan à la pierre",
       },
       {
@@ -492,7 +492,7 @@ const fr = {
           "La maîtrise de la torréfaction s'acquiert avec l'expérience : une attention de chaque instant pour obtenir une couleur dorée homogène sans brûler les amandes.",
           "L'huile cosmétique est délibérément produite à partir d'amandes crues, afin de préserver l'intégralité des vitamines et composés actifs.",
         ],
-        image: "/images/products/579507423_18299507671248989_57519321744149939_n.webp",
+        image: "/images/process/roasting.png",
         imageAlt: "Torréfaction des amandes d'argan sur feu doux",
       },
       {
@@ -506,7 +506,7 @@ const fr = {
           "Cette pâte est ensuite pressée mécaniquement à basse température — jamais au-dessus de 40 °C — sans aucun ajout chimique.",
           "L'huile obtenue est filtrée par décantation naturelle pendant 24 à 48 heures. Un kilogramme d'amandes produit environ 350 ml d'huile, ce qui explique sa précieuse rareté.",
         ],
-        image: "/images/products/580064130_18299577946248989_9157425705327260721_n.webp",
+        image: "/images/process/grinding.png",
         imageAlt: "Broyage et pressage à froid de l'huile d'argan",
       },
       {
@@ -520,7 +520,7 @@ const fr = {
           "Le remplissage des flacons se fait intégralement à la main, dans un environnement propre et maîtrisé, pour garantir l'intégrité de chaque produit.",
           "Chaque flacon porte un numéro de lot assurant une traçabilité complète — de l'arganier à votre table, nous connaissons chaque étape du voyage de votre huile.",
         ],
-        image: "/images/products/huile-argan.webp",
+        image: "/images/process/bottling.png",
         imageAlt: "Mise en flacon artisanale de l'huile d'argan",
       },
     ],
