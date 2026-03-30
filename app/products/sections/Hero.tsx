@@ -34,7 +34,7 @@ export default function Hero() {
     <section
       ref={ref}
       className={clsx(
-        "relative flex items-center justify-center min-h-[65vh] md:min-h-[75vh]",
+        "relative flex items-center justify-center min-h-[80vh] md:min-h-[90vh] xl:min-h-screen",
         "overflow-hidden bg-green"
       )}
     >
