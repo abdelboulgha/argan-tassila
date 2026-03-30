@@ -13,6 +13,7 @@ export default function Hero() {
       title={p.hero.title}
       subtitle={p.hero.subtitle}
       image={p.hero.image}
+      video="/videos/produits.mp4"
       dark={false}
     />
   );

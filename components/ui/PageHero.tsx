@@ -12,6 +12,7 @@ interface PageHeroProps {
   subtitle?: string;
   image?: string;
   imageAlt?: string;
+  video?: string;
   dark?: boolean;
 }
 
@@ -21,6 +22,7 @@ export default function PageHero({
   subtitle,
   image,
   imageAlt = "",
+  video,
   dark = false,
 }: PageHeroProps) {
   const { lang } = useLanguage();
@@ -54,8 +56,23 @@ export default function PageHero({
         dark ? "bg-green" : "bg-cream"
       )}
     >
+      {/* Background video */}
+      {video && (
+        <>
+          <video
+            src={video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+          <div className={clsx("absolute inset-0", dark ? "bg-green/60" : "bg-cream/50")} />
+        </>
+      )}
+
       {/* Background photo */}
-      {image && (
+      {image && !video && (
         <>
           <Image
             src={image}
