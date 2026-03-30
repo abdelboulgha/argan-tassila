@@ -308,19 +308,19 @@ export default function HeroScroll() {
         <div
           ref={ctaRef}
           className={clsx(
-            "absolute bottom-20 left-0 right-0 z-10 flex justify-center gap-4 opacity-0",
-            isAr && "flex-row-reverse"
+            "absolute bottom-20 px-6 w-full z-10 flex flex-col md:flex-row justify-center items-center gap-4 opacity-0",
+            isAr && "md:flex-row-reverse"
           )}
         >
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase bg-gold text-white px-7 py-4 btn-slide btn-fill-gold-light"
+            className="w-full md:w-auto justify-center inline-flex items-center gap-2 font-sans text-[11px] md:text-xs font-bold tracking-widest uppercase bg-gold text-white px-6 md:px-7 py-4 btn-slide btn-fill-gold-light"
           >
             {h.cta1}
           </Link>
           <Link
             href="/about"
-            className="inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-widest uppercase border border-white/50 text-white px-7 py-4 btn-slide btn-fill-white-soft"
+            className="w-full md:w-auto justify-center inline-flex items-center gap-2 font-sans text-[11px] md:text-xs font-bold tracking-widest uppercase border border-white/50 text-white px-6 md:px-7 py-4 btn-slide btn-fill-white-soft"
           >
             {h.cta2}
           </Link>
