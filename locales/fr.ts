@@ -126,6 +126,23 @@ const fr = {
         "https://images.unsplash.com/photo-1606787503047-934bbfe57db2?w=400&q=80",
       ],
     },
+    overview: {
+      badge: "LA COOPERATIVE",
+      title: "Enracinées dans l'arganeraie",
+      description: "Argan Tassila est une cooperative de femmes artisanes du Souss-Massa, gardiennes d'un savoir ancestral transmis de generation en generation.",
+      stats: [
+        { value: "20+", label: "Femmes artisanes" },
+        { value: "100%", label: "Naturel & pur" },
+        { value: "10 ans", label: "D'experience" },
+        { value: "800k", label: "Ha d'arganeraie" },
+      ],
+      features: [
+        { title: "Savoir-faire ancestral", desc: "Des gestes transmis de mere en fille depuis des generations dans l'arganeraie du Souss." },
+        { title: "Production artisanale", desc: "Chaque produit est fabrique a la main selon des methodes traditionnelles preservant toutes les proprietes naturelles." },
+        { title: "Commerce equitable", desc: "Les femmes artisanes sont remuneres equitablement, assurant la perennite de la cooperative et de l'ecosysteme." },
+      ],
+      cta: "Decouvrir notre histoire",
+    },
     whatsappBanner: {
       title: "Passez votre commande directement",
       subtitle: "Livraison au Maroc - Reponse en moins de 24h",
