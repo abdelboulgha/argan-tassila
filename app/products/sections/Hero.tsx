@@ -48,9 +48,9 @@ export default function Hero() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        {/* Layered dark overlay for perfect text visibility & premium feel */}
-        <div className="absolute inset-0 bg-green/70 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-t from-green via-green/50 to-black/20" />
+        {/* Cleaner dark overlay that preserves video colors while keeping text readable */}
+        <div className="absolute inset-0 bg-black/30 md:bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-green/90 via-green/40 to-transparent" />
       </div>
 
       {/* Decorative Grid Lines */}
