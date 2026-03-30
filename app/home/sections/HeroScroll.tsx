@@ -85,16 +85,38 @@ export default function HeroScroll() {
       // Work in CSS-pixel space (context already scaled by DPR in resize())
       const cw = window.innerWidth;
       const ch = window.innerHeight;
-
-      // Strict cover-fit: image always fills the entire canvas edge-to-edge
-      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
-      const dw = img.naturalWidth * scale;
-      const dh = img.naturalHeight * scale;
-      const dx = (cw - dw) / 2;
-      const dy = (ch - dh) / 2;
-
+      
+      const isPortrait = ch > cw;
       ctx.clearRect(0, 0, cw, ch);
-      ctx.drawImage(img, dx, dy, dw, dh);
+
+      if (isPortrait) {
+        // 1. Draw blurred cover background for mobile
+        const coverScale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+        const coverW = img.naturalWidth * coverScale;
+        const coverH = img.naturalHeight * coverScale;
+        ctx.filter = "blur(30px)";
+        ctx.drawImage(img, (cw - coverW) / 2, (ch - coverH) / 2, coverW, coverH);
+        
+        // Darken the blurred background to make the main video pop and text readable
+        ctx.fillStyle = "rgba(0,0,0,0.4)";
+        ctx.fillRect(0, 0, cw, ch);
+        
+        // 2. Draw strict contain foreground
+        ctx.filter = "none";
+        const containScale = Math.min(cw / img.naturalWidth, ch / img.naturalHeight);
+        const containW = img.naturalWidth * containScale;
+        const containH = img.naturalHeight * containScale;
+        ctx.drawImage(img, (cw - containW) / 2, (ch - containH) / 2, containW, containH);
+      } else {
+        // Desktop: Strict cover-fit
+        ctx.filter = "none";
+        const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+        const dw = img.naturalWidth * scale;
+        const dh = img.naturalHeight * scale;
+        const dx = (cw - dw) / 2;
+        const dy = (ch - dh) / 2;
+        ctx.drawImage(img, dx, dy, dw, dh);
+      }
     }
 
     // ── Preload all frames ───────────────────────────────────────────────────
