@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import AboutContent from "@/components/about/AboutContent";
+import Hero from "./sections/Hero";
+import Story from "./sections/Story";
+import Stats from "./sections/Stats";
+import Values from "./sections/Values";
+import Certifications from "./sections/Certifications";
 
 export const metadata: Metadata = {
   title: "Notre Histoire",
@@ -7,5 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutContent />;
+  return (
+    <>
+      <Hero />
+      <Story />
+      <Stats />
+      <Values />
+      <Certifications />
+    </>
+  );
 }

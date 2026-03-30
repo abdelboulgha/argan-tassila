@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import ProductsContent from "@/components/products/ProductsContent";
+import Hero from "./sections/Hero";
+import Catalog from "./sections/Catalog";
+import OrderInstructions from "./sections/OrderInstructions";
 
 export const metadata: Metadata = {
   title: "Nos Collections",
@@ -7,5 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function ProductsPage() {
-  return <ProductsContent />;
+  return (
+    <>
+      <Hero />
+      <Catalog />
+      <OrderInstructions />
+    </>
+  );
 }

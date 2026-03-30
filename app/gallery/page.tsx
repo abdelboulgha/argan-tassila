@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import GalleryContent from "@/components/gallery/GalleryContent";
+import Hero from "./sections/Hero";
+import GalleryGrid from "./sections/GalleryGrid";
+import InstagramCta from "./sections/InstagramCta";
 
 export const metadata: Metadata = {
   title: "Galerie",
@@ -7,5 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function GalleryPage() {
-  return <GalleryContent />;
+  return (
+    <>
+      <Hero />
+      <GalleryGrid />
+      <InstagramCta />
+    </>
+  );
 }

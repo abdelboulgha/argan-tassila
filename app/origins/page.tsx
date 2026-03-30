@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import OriginsContent from "@/components/origins/OriginsContent";
+import Hero from "./sections/Hero";
+import Panels from "./sections/Panels";
+import Unesco from "./sections/Unesco";
+import Region from "./sections/Region";
+import Ecology from "./sections/Ecology";
 
 export const metadata: Metadata = {
   title: "Origines",
@@ -7,5 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function OriginsPage() {
-  return <OriginsContent />;
+  return (
+    <>
+      <Hero />
+      <Panels />
+      <Unesco />
+      <Region />
+      <Ecology />
+    </>
+  );
 }

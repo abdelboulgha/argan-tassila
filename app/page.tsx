@@ -1,8 +1,8 @@
-import HeroScroll from "@/components/home/HeroScroll";
-import BrandStatement from "@/components/home/BrandStatement";
-import FeaturedProducts from "@/components/home/FeaturedProducts";
-import StoryTeaser from "@/components/home/StoryTeaser";
-import WhatsAppBanner from "@/components/home/WhatsAppBanner";
+import HeroScroll from "@/app/home/sections/HeroScroll";
+import BrandStatement from "@/app/home/sections/BrandStatement";
+import FeaturedProducts from "@/app/home/sections/FeaturedProducts";
+import StoryTeaser from "@/app/home/sections/StoryTeaser";
+import WhatsAppBanner from "@/app/home/sections/WhatsAppBanner";
 
 export default function HomePage() {
   return (

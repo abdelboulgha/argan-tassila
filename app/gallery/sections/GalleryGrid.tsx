@@ -6,14 +6,12 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { clsx } from "clsx";
 import { useLanguage } from "@/lib/i18n";
-import PageHero from "@/components/ui/PageHero";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-// Alternating strip heights for visual rhythm
 const HEIGHT_PATTERN = ["68vh", "44vh", "56vh", "72vh", "42vh", "60vh"];
 
-export default function GalleryContent() {
+export default function GalleryGrid() {
   const { t, lang } = useLanguage();
   const isAr = lang === "ar";
   const g = t.gallery;
@@ -27,14 +25,11 @@ export default function GalleryContent() {
       ? g.images
       : g.images.filter((img) => img.category === activeCategory);
 
-  /* ── Scroll animations — re-run when images change ── */
   useEffect(() => {
     ScrollTrigger.getAll().forEach((t) => t.kill());
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".gallery-strip").forEach((strip, i) => {
         const fromLeft = i % 2 === 0;
-
-        // Wipe reveal from alternating sides
         gsap.fromTo(
           strip,
           { clipPath: fromLeft ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)" },
@@ -46,7 +41,6 @@ export default function GalleryContent() {
           }
         );
 
-        // Caption slides up after wipe starts
         const caption = strip.querySelector<HTMLElement>(".strip-caption");
         if (caption) {
           gsap.fromTo(
@@ -63,7 +57,6 @@ export default function GalleryContent() {
           );
         }
 
-        // Watermark number drifts in
         const num = strip.querySelector<HTMLElement>(".strip-num");
         if (num) {
           gsap.fromTo(
@@ -84,7 +77,6 @@ export default function GalleryContent() {
     return () => ctx.revert();
   }, [filteredImages]);
 
-  /* ── Category filter ── */
   const handleCategory = useCallback(
     (id: string) => {
       if (id === activeCategory) return;
@@ -105,7 +97,6 @@ export default function GalleryContent() {
     [activeCategory]
   );
 
-  /* ── Lightbox open animation ── */
   useEffect(() => {
     if (lightbox && lightboxRef.current) {
       gsap.fromTo(lightboxRef.current, { opacity: 0 }, { opacity: 1, duration: 0.25 });
@@ -116,7 +107,6 @@ export default function GalleryContent() {
     }
   }, [lightbox]);
 
-  /* ── Escape key ── */
   useEffect(() => {
     const h = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
     window.addEventListener("keydown", h);
@@ -125,13 +115,6 @@ export default function GalleryContent() {
 
   return (
     <div ref={containerRef}>
-      <PageHero
-        label={g.hero.label}
-        title={g.hero.title}
-        dark={false}
-      />
-
-      {/* ── Filter bar ── */}
       <div className="sticky top-20 z-30 bg-white/95 backdrop-blur-sm border-b border-cream-dark">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className={clsx("flex items-stretch gap-0 overflow-x-auto", isAr && "flex-row-reverse")}>
@@ -163,7 +146,6 @@ export default function GalleryContent() {
         </div>
       </div>
 
-      {/* ── Full-width editorial strips ── */}
       <div>
         {filteredImages.map((img, i) => {
           const fromLeft = i % 2 === 0;
@@ -176,7 +158,6 @@ export default function GalleryContent() {
               style={{ height: h, clipPath: "inset(0 0 0 0)" }}
               aria-label={img.caption}
             >
-              {/* Photo */}
               <Image
                 src={img.src}
                 alt={img.alt}
@@ -184,8 +165,6 @@ export default function GalleryContent() {
                 className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
                 sizes="100vw"
               />
-
-              {/* Gradient vignette */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
               <div className={clsx(
                 "absolute inset-y-0 w-1/3 to-transparent",
@@ -193,8 +172,6 @@ export default function GalleryContent() {
                   ? "left-0 bg-gradient-to-r from-black/20"
                   : "right-0 bg-gradient-to-l from-black/20"
               )} />
-
-              {/* Watermark index number */}
               <div className={clsx(
                 "strip-num absolute top-1/2 -translate-y-1/2 font-display font-black text-white/[0.07] select-none pointer-events-none leading-none",
                 "text-[18vw]",
@@ -202,8 +179,6 @@ export default function GalleryContent() {
               )}>
                 {String(i + 1).padStart(2, "0")}
               </div>
-
-              {/* Caption block */}
               <div className={clsx(
                 "strip-caption absolute bottom-8 md:bottom-12 flex flex-col gap-2.5",
                 fromLeft
@@ -222,11 +197,7 @@ export default function GalleryContent() {
                 </h3>
                 <div className={clsx("w-10 h-[2px] bg-gold mt-1", !fromLeft && !isAr && "self-end")} />
               </div>
-
-              {/* Gold frame on hover */}
               <div className="absolute inset-0 border border-gold/0 group-hover:border-gold/40 transition-colors duration-700 pointer-events-none" />
-
-              {/* Expand icon */}
               <div className={clsx(
                 "absolute top-5 opacity-0 group-hover:opacity-100 transition-opacity duration-400",
                 fromLeft ? "right-5" : "left-5"
@@ -242,7 +213,6 @@ export default function GalleryContent() {
         })}
       </div>
 
-      {/* ── Count bar ── */}
       <div className="bg-white border-t border-cream-dark px-6 md:px-10 py-5">
         <div className={clsx("max-w-7xl mx-auto flex items-center gap-5", isAr && "flex-row-reverse")}>
           <p className="font-sans text-[9px] tracking-[0.3em] uppercase text-muted/40">
@@ -255,37 +225,6 @@ export default function GalleryContent() {
         </div>
       </div>
 
-      {/* ── Instagram CTA ── */}
-      <section className="py-20 bg-green relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]" aria-hidden="true">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="absolute top-0 bottom-0 border-l border-white" style={{ left: `${(i + 1) * 9.09}%` }} />
-          ))}
-        </div>
-        <div className="relative max-w-xl mx-auto px-6 text-center">
-          <div className="w-5 h-px bg-gold mx-auto mb-7" />
-          <p className="font-sans text-[9px] tracking-[0.35em] uppercase text-gold mb-5">Instagram</p>
-          <h2 className={clsx("font-display text-3xl md:text-4xl font-bold text-cream mb-3", isAr && "font-arabic")}>
-            {g.instagram.title}
-          </h2>
-          <p className="font-sans text-sm text-cream/40 mb-8">{g.instagram.handle}</p>
-          <a
-            href="https://instagram.com/argan_tassila"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={clsx(
-              "inline-flex items-center gap-3 font-sans text-[10px] tracking-widest uppercase",
-              "border border-gold/40 text-gold px-8 py-4 hover:bg-gold hover:text-green hover:border-gold transition-all duration-300",
-              isAr && "flex-row-reverse"
-            )}
-          >
-            <InstagramIcon />
-            {g.instagram.cta}
-          </a>
-        </div>
-      </section>
-
-      {/* ── Lightbox ── */}
       {lightbox && (
         <div
           ref={lightboxRef}
@@ -328,15 +267,5 @@ export default function GalleryContent() {
         </div>
       )}
     </div>
-  );
-}
-
-function InstagramIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4" aria-hidden="true">
-      <rect x="2" y="2" width="20" height="20" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
-    </svg>
   );
 }

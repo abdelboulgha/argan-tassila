@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import ProcessContent from "@/components/process/ProcessContent";
+import Hero from "./sections/Hero";
+import Intro from "./sections/Intro";
+import Timeline from "./sections/Timeline";
+import Engagements from "./sections/Engagements";
+import QuoteBanner from "./sections/QuoteBanner";
 
 export const metadata: Metadata = {
   title: "Notre Savoir-Faire",
@@ -7,5 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function ProcessPage() {
-  return <ProcessContent />;
+  return (
+    <>
+      <Hero />
+      <Intro />
+      <Timeline />
+      <Engagements />
+      <QuoteBanner />
+    </>
+  );
 }
