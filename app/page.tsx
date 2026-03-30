@@ -7,6 +7,9 @@ import Panels from "@/app/origins/sections/Panels";
 import Unesco from "@/app/origins/sections/Unesco";
 import Region from "@/app/origins/sections/Region";
 import Ecology from "@/app/origins/sections/Ecology";
+import Intro from "@/app/process/sections/Intro";
+import Timeline from "@/app/process/sections/Timeline";
+import Engagements from "@/app/process/sections/Engagements";
 
 export default function HomePage() {
   return (
@@ -15,6 +18,9 @@ export default function HomePage() {
       <BrandStatement />
       <FeaturedProducts />
       <StoryTeaser />
+      <Intro />
+      <Timeline />
+      <Engagements />
       <Panels />
       <Unesco />
       <Region />
