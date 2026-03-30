@@ -44,14 +44,13 @@ export default function Panels() {
             <div
               key={i}
               className={clsx(
-                "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center",
-                isReversed && !isAr && "lg:grid-flow-col-dense",
-                isAr && isReversed && "lg:flex lg:flex-row-reverse"
+                "flex flex-col lg:flex-row gap-12 lg:gap-20 items-center",
+                isReversed && !isAr && "lg:flex-row-reverse",
+                isAr && !isReversed && "lg:flex-row-reverse",
               )}
             >
               <div className={clsx(
-                "panel-text",
-                isReversed && !isAr ? "lg:col-start-1" : "",
+                "panel-text lg:w-1/2",
                 isAr && "text-right"
               )}>
                 <span className={clsx(
@@ -73,7 +72,7 @@ export default function Panels() {
                   {panel.text}
                 </p>
               </div>
-              <div className={clsx(isReversed && !isAr ? "lg:col-start-2" : "")}>
+              <div className="lg:w-1/2">
                 <div className="relative">
                   <div className={clsx(
                     "absolute w-full h-full border border-gold/40 -z-10",
