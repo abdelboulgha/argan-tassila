@@ -13,35 +13,6 @@ export default function Footer() {
   return (
     <footer className="bg-green relative overflow-hidden" role="contentinfo">
 
-      {/* ── CTA strip ── */}
-      <div className="border-b border-cream/10">
-        <div className={clsx(
-          "max-w-7xl mx-auto px-6 md:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6",
-          isAr && "md:flex-row-reverse"
-        )}>
-          <div className={clsx(isAr && "text-right")}>
-            <p className={clsx("font-display text-2xl md:text-3xl font-bold text-cream", isAr && "font-arabic")}>
-              {isAr ? "هل أنت مستعد للطلب؟" : "Prêt à commander ?"}
-            </p>
-            <p className={clsx("font-sans text-sm text-cream/50 mt-1", isAr && "font-arabic")}>
-              {isAr ? "تواصل معنا عبر واتساب للحصول على عرض" : "Contactez-nous sur WhatsApp pour un devis rapide"}
-            </p>
-          </div>
-          <a
-            href={buildWhatsAppURL(undefined, lang)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={clsx(
-              "flex-shrink-0 inline-flex items-center gap-3 font-sans text-xs font-semibold tracking-widest uppercase bg-gold text-white px-8 py-4 btn-slide btn-fill-gold-light",
-              isAr && "flex-row-reverse"
-            )}
-          >
-            <WhatsAppSVG className="w-4 h-4" />
-            {isAr ? "واتساب" : "WhatsApp"}
-          </a>
-        </div>
-      </div>
-
       {/* ── Main grid ── */}
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
         <div className={clsx(
