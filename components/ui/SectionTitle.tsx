@@ -59,12 +59,12 @@ export default function SectionTitle({
     <div 
       ref={ref} 
       className={clsx(
-        "w-full pt-20 pb-12 px-6 md:px-10 flex flex-col items-center justify-center text-center relative overflow-hidden",
+        "w-full pt-16 md:pt-24 pb-0 -mb-8 md:-mb-12 z-20 px-6 md:px-10 flex flex-col items-center justify-center text-center relative overflow-hidden",
         bgClasses[background]
       )}
     >
       <h2 className={clsx(
-        "section-title-el relative z-10 font-display text-4xl md:text-5xl lg:text-6xl font-bold max-w-4xl leading-[1.1]",
+        "section-title-el relative z-10 font-display text-4xl md:text-5xl font-bold max-w-4xl leading-[1.1]",
         isDark ? "text-cream" : "text-green",
         isAr && "font-arabic"
       )}>
