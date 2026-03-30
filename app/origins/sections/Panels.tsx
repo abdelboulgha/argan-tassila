@@ -26,9 +26,9 @@ export default function Panels() {
       });
       gsap.utils.toArray<HTMLElement>(".panel-img-wrap").forEach((el) => {
         gsap.fromTo(el,
-          { clipPath: "inset(0 100% 0 0)" },
-          { clipPath: "inset(0 0% 0 0)", duration: 1.1, ease: "power3.inOut",
-            scrollTrigger: { trigger: el, start: "top 82%" } }
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 1, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%" } }
         );
       });
     }, ref);
@@ -50,7 +50,7 @@ export default function Panels() {
               )}
             >
               <div className={clsx(
-                "panel-text lg:w-1/2",
+                "panel-text w-full lg:w-1/2",
                 isAr && "text-right"
               )}>
                 <span className={clsx(
@@ -72,7 +72,7 @@ export default function Panels() {
                   {panel.text}
                 </p>
               </div>
-              <div className="lg:w-1/2">
+              <div className="w-full lg:w-1/2">
                 <div className="relative">
                   <div className={clsx(
                     "absolute w-full h-full border border-gold/40 -z-10",
