@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { clsx } from "clsx";
@@ -143,15 +143,7 @@ export default function Overview() {
               ))}
             </div>
 
-            {/* CTA */}
-            <div>
-              <Link href="/about" className={clsx(
-                "inline-flex bg-green text-white px-8 py-3.5 font-sans text-xs tracking-widest uppercase hover:bg-gold transition-colors", 
-                isAr && "font-arabic tracking-normal text-sm"
-              )}>
-                {o.cta}
-              </Link>
-            </div>
+
           </div>
 
         </div>
