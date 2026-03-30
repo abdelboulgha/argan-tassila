@@ -148,6 +148,30 @@ const fr = {
       subtitle: "Livraison au Maroc - Reponse en moins de 24h",
       cta: "Commander sur WhatsApp",
     },
+    testimonials: {
+      chapter: "04",
+      sectionTitle: "Ce que disent nos clients",
+      items: [
+        {
+          quote: "La meilleure huile d'argan que j'ai eue l'occasion de goûter. Une saveur de noisette torréfiée incomparable et une texture parfaite pour mes salades.",
+          name: "Karim B.",
+          role: "Chef Cuisinier",
+          rating: 5,
+        },
+        {
+          quote: "L'Amlou Beldi est devenu un incontournable de nos petits-déjeuners. On sent vraiment le goût authentique de l'amande et de l'argan. Toute la famille adore !",
+          name: "Meryem S.",
+          role: "Cliente fidèle",
+          rating: 5,
+        },
+        {
+          quote: "J'utilise leur huile d'argan cosmétique depuis des mois. Ma peau n'a jamais été aussi lumineuse. C'est un vrai produit d'artisanat, pur et naturel.",
+          name: "Leïla F.",
+          role: "Passionnée de soins naturels",
+          rating: 5,
+        },
+      ]
+    }
   },
 
   about: {

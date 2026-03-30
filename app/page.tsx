@@ -10,6 +10,7 @@ import Ecology from "@/app/origins/sections/Ecology";
 import Intro from "@/app/process/sections/Intro";
 import Timeline from "@/app/process/sections/Timeline";
 import Engagements from "@/app/process/sections/Engagements";
+import Testimonials from "@/app/home/sections/Testimonials";
 import SectionTitle from "@/components/ui/SectionTitle";
 
 export default function HomePage() {
@@ -39,6 +40,9 @@ export default function HomePage() {
 
       <SectionTitle number="04" titleFr="Nos Produits" titleAr="منتجاتنا" background="white" />
       <FeaturedProducts />
+
+      <SectionTitle number="05" titleFr="Ce que disent nos clients" titleAr="ماذا يقول عملاؤنا" background="green" />
+      <Testimonials />
 
       <WhatsAppBanner />
     </>
