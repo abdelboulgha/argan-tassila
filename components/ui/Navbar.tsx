@@ -77,19 +77,17 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 flex-shrink-0"
+            className="flex items-center justify-center relative w-20 h-20 flex-shrink-0"
             aria-label="Argan Tassila — Accueil"
           >
-            <div className="relative w-14 h-14 flex-shrink-0">
-              <Image
-                src="/logo.png"
-                alt="Argan Tassila Cooperative"
-                fill
-                className="object-contain"
-                priority
-                sizes="56px"
-              />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Argan Tassila Cooperative"
+              fill
+              className="object-contain"
+              priority
+              sizes="80px"
+            />
           </Link>
 
           {/* Desktop Nav Links */}

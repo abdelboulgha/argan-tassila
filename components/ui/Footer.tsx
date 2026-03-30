@@ -27,13 +27,13 @@ export default function Footer() {
               className={clsx("flex items-center gap-3", isAr && "flex-row-reverse")}
               aria-label="Argan Tassila"
             >
-              <div className="relative w-12 h-12 flex-shrink-0">
+              <div className="relative w-24 h-24 flex-shrink-0">
                 <Image
                   src="/logo.png"
                   alt="Argan Tassila"
                   fill
-                  className="object-contain brightness-0 invert"
-                  sizes="48px"
+                  className="object-contain"
+                  sizes="96px"
                 />
               </div>
               <div className={clsx(isAr && "text-right")}>
