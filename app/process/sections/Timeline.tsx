@@ -75,32 +75,34 @@ function TimelineInner() {
       {/* DESKTOP LAYOUT */}
       <div className={clsx("hidden lg:flex w-full", isAr && "flex-row-reverse")}>
         {/* Sticky Images Side */}
-        <div className="w-1/2 h-screen sticky top-0 overflow-hidden bg-cream-dark">
-          {p.steps.map((step, i) => (
-            <div 
-              key={`img-desk-${i}`}
-              ref={(el) => { imagesRef.current[i] = el; }}
-              className="absolute inset-0 opacity-0 scale-105 will-change-transform"
-            >
-              <Image
-                src={step.image}
-                alt={step.imageAlt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-                priority={i === 0}
-              />
-              <div className="absolute inset-0 bg-green/10 mix-blend-multiply" />
-              <div className="absolute inset-0 bg-gradient-to-t from-green/80 via-transparent to-transparent opacity-80" />
-              
-              <div className={clsx(
-                "absolute bottom-12 text-white font-display leading-none",
-                isAr ? "right-12 text-right" : "left-12"
-              )}>
-                <span className="text-[10rem] xl:text-[14rem] font-bold opacity-15">{step.number}</span>
+        <div className="w-1/2 h-screen sticky top-0 bg-white flex flex-col items-center justify-center p-8 xl:p-20">
+          <div className="relative w-full h-[75vh] max-h-[800px] rounded-xl overflow-hidden shadow-xl bg-cream-dark">
+            {p.steps.map((step, i) => (
+              <div 
+                key={`img-desk-${i}`}
+                ref={(el) => { imagesRef.current[i] = el; }}
+                className="absolute inset-0 opacity-0 scale-105 will-change-transform"
+              >
+                <Image
+                  src={step.image}
+                  alt={step.imageAlt}
+                  fill
+                  className="object-cover object-center"
+                  sizes="50vw"
+                  priority={i === 0}
+                />
+                <div className="absolute inset-0 bg-green/10 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-t from-green/80 via-transparent to-transparent opacity-80" />
+                
+                <div className={clsx(
+                  "absolute bottom-8 text-white font-display leading-none",
+                  isAr ? "right-8 text-right" : "left-8"
+                )}>
+                  <span className="text-[8rem] xl:text-[12rem] font-bold opacity-20">{step.number}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Scrolling Text Side */}
@@ -179,7 +181,7 @@ function TimelineInner() {
       <div className="lg:hidden flex flex-col bg-cream-dark/20">
         {p.steps.map((step, i) => (
           <div key={`mob-${i}`} className="mobile-step w-full bg-white mb-4 last:mb-0 relative border-b border-cream-dark">
-            <div className="relative h-[65vh] w-full">
+            <div className="relative h-[55vh] w-full">
               <Image
                 src={step.image}
                 alt={step.imageAlt}
