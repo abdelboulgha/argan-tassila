@@ -1,4 +1,5 @@
 import HeroScroll from "@/app/home/sections/HeroScroll";
+import Overview from "@/app/home/sections/Overview";
 import BrandStatement from "@/app/home/sections/BrandStatement";
 import FeaturedProducts from "@/app/home/sections/FeaturedProducts";
 import StoryTeaser from "@/app/home/sections/StoryTeaser";
@@ -17,6 +18,7 @@ export default function HomePage() {
   return (
     <>
       <HeroScroll />
+      <Overview />
 
       <SectionTitle number="01" titleFr="Notre Histoire" titleAr="قصتنا" background="cream" />
       <BrandStatement />
