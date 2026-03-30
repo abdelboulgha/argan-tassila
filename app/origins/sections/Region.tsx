@@ -15,7 +15,7 @@ function MoroccoMap({ isAr }: { isAr: boolean }) {
         "absolute w-full h-full border border-gold/40 -z-10",
         isAr ? "-top-3 -left-3" : "-top-3 -right-3"
       )} />
-      <div className="relative overflow-hidden bg-[#c8e4f0]">
+      <div className="relative overflow-hidden bg-cream">
         <img
           src="/images/morocco.svg"
           alt="Carte du Maroc — Région Souss-Massa mise en évidence"
