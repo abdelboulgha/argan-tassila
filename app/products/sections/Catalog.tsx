@@ -77,7 +77,7 @@ export default function Catalog() {
             {filteredProducts.map((product) => (
               <article
                 key={product.id}
-                className={clsx("product-item group border border-cream-dark hover:border-gold/40 transition-colors duration-300 overflow-hidden", isAr && "text-right")}
+                className={clsx("product-item group border border-cream-dark hover:border-gold/40 transition-colors duration-300 overflow-hidden flex flex-col", isAr && "text-right")}
               >
                 <div className="relative h-64 overflow-hidden">
                   <Image
@@ -93,11 +93,11 @@ export default function Catalog() {
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   <h3 className={clsx("font-display text-xl font-semibold text-green mb-3", isAr && "font-arabic")}>
                     {product.name}
                   </h3>
-                  <p className={clsx("font-sans text-sm leading-relaxed text-muted mb-4", isAr && "font-arabic")}>
+                  <p className={clsx("font-sans text-sm leading-relaxed text-muted mb-4 flex-1", isAr && "font-arabic")}>
                     {product.description}
                   </p>
                   <div className={clsx("flex flex-col gap-3", isAr && "items-end")}>
