@@ -49,12 +49,7 @@ export default function StoryTeaser() {
   return (
     <section ref={ref} className="py-24 md:py-32 bg-green overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div
-          className={clsx(
-            "grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center",
-            isAr && "lg:flex lg:flex-row-reverse"
-          )}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text side */}
           <div
             className={clsx(
@@ -113,10 +108,7 @@ export default function StoryTeaser() {
 
             <Link
               href="/about"
-              className={clsx(
-                "inline-flex items-center gap-3 font-sans text-xs tracking-widest uppercase text-cream border-b border-cream/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300",
-                isAr && "flex-row-reverse"
-              )}
+              className="inline-flex items-center gap-3 font-sans text-xs tracking-widest uppercase text-cream border-b border-cream/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300"
             >
               {s.cta}
               <span className="w-8 h-px bg-current" />
@@ -137,16 +129,10 @@ export default function StoryTeaser() {
             )} />
 
             {/* Grid container — gold gap = separator lines */}
-            <div className={clsx(
-              "grid gap-[3px] bg-gold/40 h-[480px] md:h-[540px]",
-              isAr ? "grid-cols-[2fr_3fr]" : "grid-cols-[3fr_2fr]"
-            )}>
+            <div className="grid grid-cols-[3fr_2fr] gap-[3px] bg-gold/40 h-[480px] md:h-[540px]">
 
               {/* ── Main image (tall, occupies full height) ── */}
-              <div className={clsx(
-                "row-span-2 relative overflow-hidden group",
-                isAr ? "order-2" : "order-1"
-              )}>
+              <div className="row-span-2 relative overflow-hidden group">
                 <Image
                   src="/images/products/huile-argan.webp"
                   alt="Huile d'argan pure Argan Tassila"
@@ -158,10 +144,7 @@ export default function StoryTeaser() {
               </div>
 
               {/* ── Top small image ── */}
-              <div className={clsx(
-                "relative overflow-hidden group",
-                isAr ? "order-1" : "order-2"
-              )}>
+              <div className="relative overflow-hidden group">
                 <Image
                   src="/images/products/pack-trio.webp"
                   alt="Pack Trio Amlou Argan Tassila"
@@ -179,10 +162,7 @@ export default function StoryTeaser() {
               </div>
 
               {/* ── Bottom small image ── */}
-              <div className={clsx(
-                "relative overflow-hidden group",
-                isAr ? "order-1" : "order-3"
-              )}>
+              <div className="relative overflow-hidden group">
                 <Image
                   src="/images/products/amlou-beldi.webp"
                   alt="Amlou Beldi Amande Argan Tassila"
