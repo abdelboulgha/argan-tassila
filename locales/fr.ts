@@ -18,7 +18,7 @@ const fr = {
   footer: {
     tagline: "L'authenticite marocaine, directement chez vous",
     description:
-      "Cooperative feminine du Souss-Massa, productrice d'huile d'argan, d'amlou louz et de couscous artisanal.",
+      "Coopérative féminine de la région Souss-Massa, spécialisée dans la production d’huile d’argan naturelle, d’amlou sous différentes variétés, ainsi que de céréales et produits du terroir élaborés avec soin selon un savoir-faire authentique.",
     pagesTitle: "Pages",
     productsTitle: "Produits",
     contactTitle: "Contact",
@@ -29,8 +29,8 @@ const fr = {
       { label: "Amlou Crispy Coco", href: "/products" },
       { label: "Selou & Zemita", href: "/products" },
     ],
-    address: "Aïdir, Agadir-Idaoutanane, Souss-Massa, Maroc",
-    phone: "+212 637 817 229",
+    address: "Commune Rurale Aziar – Cercle d’Imouzare – Prefecture d’Agadir Ida Outanane Maroc",
+    phone: "+212 660 308 681",
     email: "argantassila@gmail.com",
     instagram: "@argan_tassila",
     copyright: "2024 Argan Tassila Cooperative. Tous droits reserves.",
@@ -182,14 +182,14 @@ const fr = {
     },
     story: {
       label: "DEPUIS LE SOUSS",
-      title: "Une cooperative nee de la terre",
+      title: "Une coopérative née de la terre",
       paragraphs: [
-        "Argan Tassila est une cooperative feminine fondee dans la region du Souss-Massa, au coeur de l'arganeraie marocaine. Notre aventure a debute il y a plus de dix ans, portee par la volonte de valoriser les richesses naturelles de notre terroir tout en offrant des debouches economiques durables aux femmes de la region.",
-        "Nous reunissons aujourd'hui plus de vingt artisanes, chacune experte dans son domaine, de la recolte des fruits a la mise en flacon de l'huile precieuse. Ensemble, nous perpetuons des savoir-faire transmis de mere en fille depuis des generations.",
-        "Notre cooperative est bien plus qu'une entreprise : c'est un engagement social, culturel et environnemental. Chaque produit que nous fabriquons porte l'empreinte de ces femmes extraordinaires et de la terre genereuse qui les nourrit.",
+        "ARGAN TASSILA est une coopérative féminine fondée dans la région du Souss-Massa, au cœur de l’arganeraie marocaine. Née de la volonté de valoriser les richesses naturelles de notre terroir, elle œuvre à promouvoir les produits locaux tout en créant des opportunités économiques durables pour les femmes de la région.",
+        "Aujourd’hui, notre coopérative réunit plus de vingt artisanes passionnées, chacune experte dans son domaine, de la récolte des fruits à la transformation et au conditionnement de nos produits. Ensemble, nous préservons un savoir-faire authentique, transmis de génération en génération.",
+        "ARGAN TASSILA est bien plus qu’une structure de production : c’est un engagement social, culturel et environnemental. Chaque produit que nous élaborons porte l’empreinte du travail de ces femmes engagées et de la terre généreuse qui les inspire.",
       ],
       pullQuote:
-        "Le secret de notre huile, c'est la patience et l'amour que ces femmes y mettent chaque jour.",
+        "Chaque goutte de nos huiles porte la patience, le savoir-faire et l’amour de nos femmes.",
       image:
         "https://images.unsplash.com/photo-1543362906-acfc16c67564?w=900&q=80",
       imageAlt: "Produits artisanaux Argan Tassila",
@@ -460,9 +460,9 @@ const fr = {
       label: "NOTRE TERROIR",
       title: "Le Souss-Massa",
       paragraphs: [
-        "C'est dans le village d'Aidir, au coeur de la province d'Agadir-Idaoutanane, que notre cooperative a vu le jour. Une terre baignee de soleil, encadree par le Haut Atlas et l'Anti-Atlas, ou l'arganier pousse depuis des millenaires.",
-        "L'arganeraie du Souss-Massa couvre plus de 800 000 hectares classes par l'UNESCO. Nos artisanes recoltent les fruits de ces arbres centenaires selon des methodes transmises de generation en generation.",
-        "Chaque produit Argan Tassila porte en lui l'identite de cette region exceptionnelle — son sol, son climat, et le savoir-faire irreplacable de ses femmes.",
+        "C'est dans le village d'Aziar, au cœur de la province d'Agadir-Idaoutanane, que notre coopérative a vu le jour. Une terre baignée de soleil, où se rencontrent les plaines fertiles et les contreforts des massifs de l’Atlas et de l’Anti-Atlas, et où l'arganier pousse depuis des millénaires.",
+        "L'arganeraie du Souss-Massa, classée au patrimoine mondial de l’UNESCO, s’étend sur plus de 800 000 hectares. Nos artisanes y récoltent avec soin les fruits des arganiers centenaires selon des méthodes transmises de mère en fille depuis des générations. Chaque étape de la production, de la collecte à la mise en bouteille, reflète le respect de la nature et la maîtrise artisanale unique de nos femmes.",
+        "Chaque produit ARGAN TASSILA porte en lui l’identité de cette région exceptionnelle — son sol, son climat, et l’expertise précieuse de nos artisanes. En travaillant en harmonie avec notre environnement, nous contribuons à préserver l’écosystème de l’arganeraie tout en soutenant une économie locale durable et équitable, centrée sur l’autonomie et l’émancipation des femmes de notre communauté.",
       ],
       image: "/images/products/zemita.webp",
       imageAlt: "Produits artisanaux du Souss-Massa",
