@@ -24,7 +24,13 @@ export default function Catalog() {
   const isAr = lang === "ar";
   const p = t.products;
   const [activeFilter, setActiveFilter] = useState("all");
+  const [selectedSizes, setSelectedSizes] = useState<Record<string, string>>({});
   const ref = useRef<HTMLDivElement>(null);
+
+  function getSelectedSize(productId: string, sizes?: string[]) {
+    if (!sizes?.length) return undefined;
+    return selectedSizes[productId] ?? sizes[0];
+  }
 
   const filteredProducts = activeFilter === "all"
     ? p.items
@@ -100,12 +106,35 @@ export default function Catalog() {
                   <p className={clsx("font-sans text-sm leading-relaxed text-muted mb-4 flex-1", isAr && "font-arabic")}>
                     {product.description}
                   </p>
+                  {"sizes" in product && Array.isArray(product.sizes) && product.sizes.length > 0 && (
+                    <div className={clsx("flex flex-wrap gap-2 mb-4", isAr && "flex-row-reverse")}>
+                      {(product.sizes as string[]).map((size) => (
+                        <button
+                          key={size}
+                          onClick={() => setSelectedSizes(prev => ({ ...prev, [product.id]: size }))}
+                          className={clsx(
+                            "font-sans text-xs px-3 py-1.5 border transition-all duration-150",
+                            getSelectedSize(product.id, product.sizes as string[]) === size
+                              ? "border-green bg-green text-cream"
+                              : "border-cream-dark text-muted hover:border-green hover:text-green",
+                            isAr && "font-arabic"
+                          )}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                   <div className={clsx("flex flex-col gap-3", isAr && "items-end")}>
                     <span className="font-display text-base font-semibold text-gold">
                       {product.price}
                     </span>
                     <a
-                      href={buildWhatsAppURL(product.name, lang)}
+                      href={buildWhatsAppURL(
+                        product.name,
+                        lang,
+                        "sizes" in product ? getSelectedSize(product.id, product.sizes as string[]) : undefined
+                      )}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={clsx(

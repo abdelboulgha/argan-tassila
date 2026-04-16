@@ -127,11 +127,11 @@ export default function Overview() {
             {/* Compact Features List */}
             <div className="space-y-4 mb-8">
               {o.features.map((feature: any, i: number) => (
-                <div key={i} className={clsx("flex gap-3 items-start", isAr && "flex-row-reverse")}>
+                <div key={i} className="flex gap-3 items-start">
                   <div className="mt-1 w-6 h-6 rounded-full bg-cream-dark flex items-center justify-center flex-shrink-0">
                     <div className="w-1.5 h-1.5 bg-gold rounded-full" />
                   </div>
-                  <div>
+                  <div className={clsx("flex-1", isAr && "text-right")}>
                     <h4 className={clsx("font-display text-base font-bold text-green", isAr && "font-arabic")}>
                       {feature.title}
                     </h4>
