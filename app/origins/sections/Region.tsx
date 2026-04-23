@@ -38,7 +38,7 @@ function MoroccoMap({ isAr }: { isAr: boolean }) {
             {isAr ? "عاصمة المنطقة" : "Capitale régionale"}
           </p>
           <p className={clsx("font-display text-sm font-bold text-green mt-0.5", isAr && "font-arabic")}>
-            {isAr ? "أگادير · أيدير" : "Agadir · Aïdir"}
+            {isAr ? "أگادير · أيدير" : "Agadir Rurale Aziar"}
           </p>
         </div>
       </div>
